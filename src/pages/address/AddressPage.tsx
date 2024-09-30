@@ -1,11 +1,5 @@
-import { AddressForm } from "@/entities";
-
 const AddressPage = () => {
-  return (
-    <div>
-      <AddressForm />
-    </div>
-  );
+  return <>AddressPage</>;
 };
 
 export default AddressPage;

@@ -1,5 +1,3 @@
-import { MidContainer } from "@/entities";
-
-const NotFoundPage = () => <MidContainer>404</MidContainer>;
+const NotFoundPage = () => <>404</>;
 
 export default NotFoundPage;

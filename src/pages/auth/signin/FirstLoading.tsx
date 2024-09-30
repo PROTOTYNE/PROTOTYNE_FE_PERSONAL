@@ -1,17 +1,8 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { ClipLoader } from "react-spinners";
 
-import {
-  Background,
-  MidContainer,
-  MidPointLine,
-  BottomImage,
-} from "@/entities";
+import { Background } from "@/entities";
 
-import * as Styles from "./Styles";
-
-//디자인 변경에 따라 제거됨
 export const FirstLoading = () => {
   const [show, setShow] = useState(false);
 
@@ -29,18 +20,6 @@ export const FirstLoading = () => {
       {show ? (
         <Container>
           <Background src="/background/first_loading.jpg" />
-          <MidContainer>
-            <div style={{ height: "130px" }}></div>
-            <Styles.Title>
-              <Styles.LgText>앞서가는 당신을 위한</Styles.LgText>
-              <Styles.LgText>특별한 기회</Styles.LgText>
-              <Styles.XlText>Prototyne.</Styles.XlText>
-              <MidPointLine />
-            </Styles.Title>
-            <div style={{ height: "60px" }}></div>
-            <ClipLoader color="white" />
-          </MidContainer>
-          <BottomImage src="/image/small_logo.png" alt="logo" />
         </Container>
       ) : null}
     </>
