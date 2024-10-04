@@ -34,7 +34,6 @@ const Address = lazy(() => import("@/pages/address/AddressPage"));
 const AddressInfo = lazy(
   () => import("@/pages/product/addressInfo/AddressInfoPage")
 );
-const MyTicket = lazy(() => import("@/pages/myTicket/myTicketPage"));
 
 const My = lazy(() => import("@/pages/mypage/MyPage"));
 
@@ -73,7 +72,6 @@ const PageRouter = () => (
             <Route path={PAGE_URL.Product} element={<Product />} />
             <Route path={PAGE_URL.Address} element={<Address />} />
             <Route path={PAGE_URL.AddressInfo} element={<AddressInfo />} />
-            <Route path={PAGE_URL.MyTicket} element={<MyTicket />} />
 
             <Route path={PAGE_URL.My} element={<My />} />
 
