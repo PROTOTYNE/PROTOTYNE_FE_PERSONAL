@@ -1,119 +1,40 @@
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { Link } from "react-router-dom";
 
-export const Header = ({
-  children,
-  onBack,
-  background,
-  styled,
-  colorBackground,
-}: {
-  children: React.ReactNode;
-  onBack?: boolean;
-  background?: boolean;
-  styled?: boolean;
-  colorBackground?: boolean;
-}) => {
-  const navigate = useNavigate();
-
+export const Header = () => {
   return (
-    <>
-      {background ? <BackGround /> : null}
-      {styled ? <StyledContioner /> : null}
-      {colorBackground ? <ColorBackGround /> : null}
-      <Container style={{ color: styled ? "white" : "none" }}>
-        {onBack && colorBackground ? (
-          <WhiteBackButton
-            onClick={() => {
-              navigate(-1);
-            }}
-          />
-        ) : onBack ? (
-          <BackButton
-            onClick={() => {
-              navigate(-1);
-            }}
-          />
-        ) : null}
-        {children}
-      </Container>
-    </>
+    <BackGround>
+      <img src="./image/side.png"></img>
+      <Link to={"/home"}>
+        <Logo src="./logo/defualt.png"></Logo>
+      </Link>
+      <Link to={"/alarm"}>
+        <img src="./image/alarm.png"></img>
+      </Link>
+    </BackGround>
   );
 };
 
 const BackGround = styled.div`
   background-color: white;
   width: 100%;
-  height: 54px;
+  height: 60px;
 
   position: fixed;
   top: 0px;
   left: 0px;
 
   z-index: 10;
-`;
-
-const ColorBackGround = styled.div`
-  background: linear-gradient(to right, #7995b2 0%, #476090 51%, #0d1b4a 100%);
-
-  width: 100%;
-  height: 54px;
-
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
-  z-index: 10;
-`;
-
-const Container = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
-  width: 100%;
 
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 
-  margin-top: 10px;
-
-  font-size: 23px;
-
-  z-index: 11;
-
-  > * {
-    margin-bottom: 10px;
-  }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
-const StyledContioner = styled.div`
-  background-image: url("/background/first_loading.jpg");
+const Logo = styled.img`
+  width: 155px;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  height: 54px;
-  width: 100%;
-
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
-  color: white;
-
-  z-index: 10;
-`;
-
-const BackButton = styled(ArrowBackIosNewIcon)`
-  position: absolute;
-  top: 5px;
-  left: 30px;
-`;
-
-const WhiteBackButton = styled(BackButton)`
-  color: white;
+  margin: 5px 40px 0 40px;
 `;
