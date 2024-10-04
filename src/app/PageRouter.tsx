@@ -9,9 +9,9 @@ import {
 import AppStyles from "./AppStyles";
 import AuthRouter from "./AuthRouter";
 
-import { Header, Loading } from "@/entities";
-
+import { Loading } from "@/entities";
 import { PAGE_URL } from "@/shared";
+import { MainContainer } from "@/widget";
 
 const SignIn = lazy(() => import("@/pages/auth/signin/SignInPage"));
 const Redirect = lazy(() => import("@/pages/auth/signin/RedirectPage"));
@@ -35,7 +35,7 @@ const AddressInfo = lazy(
   () => import("@/pages/product/addressInfo/AddressInfoPage")
 );
 
-const My = lazy(() => import("@/pages/mypage/MyPage"));
+const Ticket = lazy(() => import("@/pages/ticket/TicketPage"));
 
 const Search = lazy(() => import("@/pages/search/SearchPage"));
 const Detail = lazy(() => import("@/pages/home/detail/DetailPage"));
@@ -62,13 +62,7 @@ const PageRouter = () => (
             <Route path={PAGE_URL.PersonalInfo} element={<PersonalInfo />} />
 
             {/* 로그인 이후 */}
-            <Route
-              element={
-                <>
-                  <Header />
-                </>
-              }
-            >
+            <Route element={<MainContainer />}>
               <Route path={PAGE_URL.Home} element={<Home />} />
               <Route path={PAGE_URL.MyInfo} element={<MyInfo />} />
               <Route path={PAGE_URL.EditMyInfo} element={<EditMyInfo />} />
@@ -81,7 +75,7 @@ const PageRouter = () => (
               <Route path={PAGE_URL.Address} element={<Address />} />
               <Route path={PAGE_URL.AddressInfo} element={<AddressInfo />} />
 
-              <Route path={PAGE_URL.My} element={<My />} />
+              <Route path={PAGE_URL.Ticket} element={<Ticket />} />
 
               <Route path={PAGE_URL.Search} element={<Search />} />
               <Route

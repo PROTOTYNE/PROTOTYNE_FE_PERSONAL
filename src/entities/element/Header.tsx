@@ -18,7 +18,7 @@ export const Header = () => {
 const BackGround = styled.div`
   background-color: white;
   width: 100%;
-  height: 60px;
+  height: 70px;
 
   position: fixed;
   top: 0px;
