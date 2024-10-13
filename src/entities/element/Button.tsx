@@ -17,7 +17,7 @@ export const Button = styled.button`
 
   background: ${colors.main};
 
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
 
