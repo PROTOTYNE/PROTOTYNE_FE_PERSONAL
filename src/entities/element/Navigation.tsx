@@ -17,7 +17,7 @@ export const Navigation = () => {
         <NavLinkStyle
           key={element.path}
           to={element.path}
-          isTicket={element.imgName === "ticket"}
+          name={element.imgName}
         >
           <element.svg />
         </NavLinkStyle>
@@ -48,12 +48,15 @@ const BackGround = styled.div`
   }
 `;
 
-const NavLinkStyle = styled(NavLink)<{ isTicket?: boolean }>`
+const NavLinkStyle = styled(NavLink)<{ name: string }>`
   stroke: ${colors.black};
   &.active {
     path {
-      fill: ${colors.main};
-      stroke: ${(props) => (props.isTicket ? colors.white : colors.main)};
+      fill: ${(props) =>
+        props.name === "search" ? colors.white : colors.main};
+      stroke: ${(props) =>
+        props.name === "ticket" ? colors.white : colors.main};
+      stroke-width: ${(props) => (props.name === "search" ? "2px" : "1px")};
     }
   }
 `;
