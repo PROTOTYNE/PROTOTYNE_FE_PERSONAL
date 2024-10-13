@@ -8,6 +8,7 @@ export {
   getAccess,
 } from "./configs/axios";
 export { additionalInfoOptions } from "./configs/options";
+export { breakpoints } from "./configs/breakpoints";
 
 export { useUserStore } from "./hooks/stores/useUserStore";
 

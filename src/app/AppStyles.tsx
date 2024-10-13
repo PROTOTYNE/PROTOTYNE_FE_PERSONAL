@@ -6,10 +6,11 @@ const Styles = css`
   }
   body {
     overflow-x: hidden;
+    -ms-overflow-style: none;
     margin: 0;
   }
-  button {
-    all: unset;
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
 
