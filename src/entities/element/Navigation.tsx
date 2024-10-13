@@ -1,26 +1,26 @@
 import styled from "@emotion/styled";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Home, Ticket, Search, My } from "@/shared";
+import { colors } from "@/shared";
 
 const naviationInfo = [
-  { path: "/home", imgName: "home" },
-  { path: "/ticket", imgName: "ticket" },
-  { path: "/search", imgName: "search" },
-  { path: "/myinfo", imgName: "my" },
+  { path: "/home", imgName: "home", svg: Home },
+  { path: "/ticket", imgName: "ticket", svg: Ticket },
+  { path: "/search", imgName: "search", svg: Search },
+  { path: "/myinfo", imgName: "my", svg: My },
 ];
 
 export const Navigation = () => {
-  const location = useLocation();
-
   return (
     <BackGround>
       {naviationInfo.map((element) => (
-        <Link key={element.path} to={element.path}>
-          <img
-            src={`./image/${element.imgName}-${
-              location.pathname.includes(element.path) ? "on" : "off"
-            }.png`}
-          ></img>
-        </Link>
+        <NavLinkStyle
+          key={element.path}
+          to={element.path}
+          isTicket={element.imgName === "ticket"}
+        >
+          <element.svg />
+        </NavLinkStyle>
       ))}
     </BackGround>
   );
@@ -45,5 +45,15 @@ const BackGround = styled.div`
 
   a {
     width: 20px;
+  }
+`;
+
+const NavLinkStyle = styled(NavLink)<{ isTicket?: boolean }>`
+  stroke: ${colors.black};
+  &.active {
+    path {
+      fill: ${colors.main};
+      stroke: ${(props) => (props.isTicket ? colors.white : colors.main)};
+    }
   }
 `;
