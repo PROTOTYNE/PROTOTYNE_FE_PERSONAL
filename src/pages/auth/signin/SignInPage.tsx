@@ -70,14 +70,14 @@ const Container = styled.div`
     margin-top: 200px;
 
     > span {
-      width: 300px;
+      width: 295px;
       font-size: 19px;
       font-weight: bold;
     }
-  }
 
-  img {
-    width: 300px;
+    > img {
+      width: 295px;
+    }
   }
 `;
 

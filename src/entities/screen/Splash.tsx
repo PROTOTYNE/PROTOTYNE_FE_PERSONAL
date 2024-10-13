@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 import { DotLoader } from "react-spinners";
 
+import { colors } from "@/shared";
+
 export const Splash = () => (
   <Container>
     <img src="./image/main_logo.png" alt="main_title"></img>
-    <DotLoader color="red" speedMultiplier={1} />
+    <DotLoader color={colors.sub2} speedMultiplier={1} />
   </Container>
 );
 
