@@ -52,9 +52,11 @@ const NavLinkStyle = styled(NavLink)<{ name: string }>`
   stroke: ${colors.black};
   &.active {
     path {
-      fill: ${colors.main};
+      fill: ${(props) =>
+        props.name === "search" ? colors.white : colors.main};
       stroke: ${(props) =>
         props.name === "ticket" ? colors.white : colors.main};
+      stroke-width: ${(props) => (props.name === "search" ? "2px" : "1px")};
     }
   }
 `;
