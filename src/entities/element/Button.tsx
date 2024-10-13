@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "@/shared";
 
 export const Button = styled.button`
   position: fixed;
@@ -14,18 +15,19 @@ export const Button = styled.button`
   width: 345px;
   height: 48px;
 
-  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
+  background: ${colors.main};
 
   font-size: 17px;
+  font-weight: bold;
   color: white;
 
   border-radius: 8px;
-  border-color: #6482eb;
+  border-color: ${colors.main};
 `;
 
 export const DisableButton = styled(Button)`
   background: none;
-  background-color: #d9d9d9;
+  background-color: ${colors.gray};
 `;
 
 export const TwoOptionsButton = ({
@@ -70,12 +72,11 @@ const LeftButton = styled.button`
   color: white;
 
   border-radius: 8px;
-  border-color: #6482eb;
 
   width: 28%;
   height: 100%;
 
-  background-color: #d9d9d9;
+  background-color: ${colors.gray};
 `;
 
 const RightButton = styled(LeftButton)`
@@ -83,5 +84,5 @@ const RightButton = styled(LeftButton)`
 
   width: 70%;
 
-  background: linear-gradient(90deg, #718cab, #505995, #1a0858);
+  background: ${colors.main};
 `;

@@ -3,6 +3,8 @@ export enum PAGE_URL {
   Redirect = "/oauth",
 
   SignUp = "/signup",
+  SignUpInfo = "/signup/info",
+  SignUpAddition = "/signup/addition",
   PersonalInfo = "/signup/personal",
   TermsOfUse = "/signup/term",
 
