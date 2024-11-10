@@ -15,7 +15,8 @@ export { useUserStore } from "./hooks/stores/useUserStore";
 
 export { AuthService } from "./hooks/services/AuthService";
 
-export { default as Home } from "./svg/home.svg?react";
+export { default as HomeOn } from "./svg/homeOn.svg?react";
+export { default as HomeOff } from "./svg/homeOff.svg?react";
 export { default as My } from "./svg/my.svg?react";
 export { default as Search } from "./svg/search.svg?react";
 export { default as Ticket } from "./svg/ticket.svg?react";
