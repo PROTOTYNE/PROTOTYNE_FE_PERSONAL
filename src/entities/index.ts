@@ -8,3 +8,7 @@ export { GrayBackground } from "./screen/GrayBackground";
 export { Loading } from "./screen/Loading";
 
 export { HotCard } from "./element/HomePage/HotCard";
+export { DdayCard } from "./element/HomePage/DdayCard";
+export { NewCard } from "./element/HomePage/NewCard";
+
+export { DivLine } from "./element/Styles";

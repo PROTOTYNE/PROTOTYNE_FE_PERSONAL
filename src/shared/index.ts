@@ -45,3 +45,5 @@ export { default as TicketImg } from "./svg/ticketImg.svg?react";
 export { default as Toy } from "./svg/toy.svg?react";
 export { default as WarningCircled } from "./svg/warningCircled.svg?react";
 export { default as New } from "./svg/new.svg?react";
+export { default as All } from "./svg/all.svg?react";
+export { default as BookmarkOutlined } from "./svg/bookmarkoutlined.svg?react";

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { TicketImg } from "@/shared";
+import { BookmarkOutlined, TicketImg } from "@/shared";
 import { colors } from "@/shared";
 
-interface HotCardProps {
+interface DdayCardProps {
   id: number;
   title: string;
   company: string;
@@ -11,14 +11,13 @@ interface HotCardProps {
   image: string;
 }
 
-export const HotCard = ({
+export const DdayCard = ({
   // id,
   title,
   company,
-  apply,
   ticket,
   image,
-}: HotCardProps) => {
+}: DdayCardProps) => {
   return (
     <CardContainer>
       <ImageBox>
@@ -28,25 +27,42 @@ export const HotCard = ({
         </div>
       </ImageBox>
       <DescContainer>
-        <p id="title">{title}</p>
         <div>
+          <p id="title">{title}</p>
           <p id="company">{company}</p>
-          <p id="apply">{apply}명 신청</p>
         </div>
+        <BookmarkOutlined />
       </DescContainer>
+      <DdayBox>D-2</DdayBox>
     </CardContainer>
   );
 };
 
 const CardContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
+`;
+
+const DdayBox = styled.div`
+  position: absolute;
+  top: -10px;
+  width: 50px;
+  height: 22px;
+  background-color: ${colors.main};
+  color: white;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
 `;
 
 const ImageBox = styled.div`
   position: relative;
-  width: 137px;
-  height: 137px;
+  width: 140px;
+  height: 135px;
   border-radius: 9px;
   border: 1px solid #0500ff;
   padding: 10px;
@@ -67,27 +83,22 @@ const ImageBox = styled.div`
 
 const DescContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-top: 10px;
-  flex-direction: column;
-  #title {
-    font-size: 14px;
-    color: ${colors.black};
-    font-weight: bold;
-    margin: 0;
-  }
   div {
     font-size: 11px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     p {
       margin: 0;
     }
     #company {
       color: #667197;
     }
-    #apply {
-      font-size: 10px;
-      color: ${colors.main};
+    #title {
+      font-size: 14px;
+      color: ${colors.black};
+      font-weight: bold;
     }
   }
 `;
