@@ -7,19 +7,23 @@ import {
   Clothes,
   Electronic,
   Toy,
+  PAGE_URL,
 } from "@/shared";
 import { colors, All, Beauty } from "@/shared";
 import styled from "@emotion/styled";
 import { HotCard, DdayCard, DivLine, NewCard } from "@/entities";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     <PageWrapper>
       <TitleContainer>
-        <h1>
-          시제품 HOT <Star fill={colors.main} style={{ marginLeft: 7 }} />
-        </h1>
-        <p>
+        <div>
+          <h1>시제품 HOT</h1>
+          <Star fill={colors.main} style={{ marginLeft: 7 }} />
+        </div>
+        <p onClick={() => navigate(PAGE_URL.PopularDetail)}>
           더보기 <RightArr stroke={colors.main} style={{ marginLeft: 7 }} />
         </p>
       </TitleContainer>
@@ -36,14 +40,14 @@ const HomePage = () => {
               <category.icon />
               {category.name}
             </Category>
-            {idx + 1 === Categories.length || <CategoryDivline />}
+            {idx + 1 === Categories.length || <CategoryDivline key={idx} />}
           </>
         ))}
       </CategoryContainer>
       <DivLine />
       <TitleContainer>
         <h1>체험 신청 마감 임박</h1>
-        <p>
+        <p onClick={() => navigate(PAGE_URL.ImminentDetail)}>
           더보기 <RightArr stroke={colors.main} style={{ marginLeft: 7 }} />
         </p>
       </TitleContainer>
@@ -57,7 +61,7 @@ const HomePage = () => {
         <h1>
           신규 등록된 시제품 <New style={{ marginLeft: 7 }} />
         </h1>
-        <p>
+        <p onClick={() => navigate(PAGE_URL.NewDetail)}>
           더보기 <RightArr stroke={colors.main} style={{ marginLeft: 7 }} />
         </p>
       </TitleContainer>
@@ -90,6 +94,16 @@ const TitleContainer = styled.div`
   }
   p {
     font-size: 12px;
+    cursor: pointer;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    h1 {
+      margin: 5px 0 0 0;
+      font-size: 21px;
+    }
   }
 `;
 
