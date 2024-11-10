@@ -10,7 +10,7 @@ const SignInPage = () => {
     setShow(true);
     const timer = setTimeout(() => {
       setShow(false);
-    }, 3000);
+    }, 2600);
 
     return () => clearTimeout(timer);
   }, []);
