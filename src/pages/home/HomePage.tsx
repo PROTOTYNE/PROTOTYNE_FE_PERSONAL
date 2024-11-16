@@ -11,7 +11,14 @@ import {
 } from "@/shared";
 import { colors, All, Beauty } from "@/shared";
 import styled from "@emotion/styled";
-import { HotCard, DdayCard, DivLine, NewCard } from "@/entities";
+import {
+  HotCard,
+  DdayCard,
+  DivLine,
+  NewCard,
+  PageWrapper,
+  TitleContainer,
+} from "@/entities";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
@@ -75,37 +82,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-const PageWrapper = styled.div`
-  padding: 20px 0 20px 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 26px 0 0;
-  h1 {
-    margin: 0;
-    font-size: 21px;
-  }
-  p {
-    font-size: 12px;
-    cursor: pointer;
-  }
-  div {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    h1 {
-      margin: 5px 0 0 0;
-      font-size: 21px;
-    }
-  }
-`;
 
 const CategoryContainer = styled.div`
   overflow-x: scroll;

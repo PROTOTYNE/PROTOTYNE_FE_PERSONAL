@@ -15,4 +15,4 @@ export { ImminentDetail } from "./screen/Home/ImminentDetail";
 export { PopularDetail } from "./screen/Home/PopularDetail";
 export { NewDetail } from "./screen/Home/NewDetail";
 
-export { DivLine } from "./element/Styles";
+export { DivLine, PageWrapper, TitleContainer } from "./element/Styles";
