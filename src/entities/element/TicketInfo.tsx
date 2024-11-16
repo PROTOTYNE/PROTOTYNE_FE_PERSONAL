@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import ticket from "../../../public/icons/티켓.svg";
+import ticket from "/icons/티켓.svg";
 
 interface Props {
   ticketCount?: number;
@@ -7,7 +7,8 @@ interface Props {
 
 const TicketInfo = ({ ticketCount }: Props) => (
   <StyledTicketInfo>
-    <img src={ticket} alt="Ticket" /> X {ticketCount}개
+    <img src={ticket} alt="Ticket" />
+    <div> X {ticketCount}개</div>
   </StyledTicketInfo>
 );
 
@@ -18,6 +19,7 @@ const StyledTicketInfo = styled.div`
   font-size: 12px;
   text-align: right;
   color: #667197;
+  display: flex;
 `;
 
 export default TicketInfo;

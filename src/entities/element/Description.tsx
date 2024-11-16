@@ -9,12 +9,8 @@ const Description = ({ description }: DescriptionProps) => {
 };
 
 const StyledDescription = styled.div`
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 22px;
-  color: #333;
   margin: 15px 0;
 `;
 

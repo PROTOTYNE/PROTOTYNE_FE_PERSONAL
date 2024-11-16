@@ -14,7 +14,7 @@ const StyledIndex = styled.div`
   align-items: center;
   padding: 10px;
   gap: 10px;
-
+  margin: 10px 0;
   display: inline-block;
 
   text-align: center;
