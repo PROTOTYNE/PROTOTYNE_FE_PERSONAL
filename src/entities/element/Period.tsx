@@ -1,47 +1,37 @@
 import styled from "@emotion/styled";
 
-const Rectangle = styled.div<{ isSelected?: boolean }>`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-  display: inline;
-  width: 125px;
-  height: 20px;
-  text-align: center;
-  background: #ffffff;
-  /* Main */
-  border: ${(props) => (props.isSelected ? "" : "0.7px solid #0500FF")};
-  border-radius: 6px;
+interface PeriodProps {
+  content: string;
+  isNow: boolean;
+  dateContent: string;
+}
 
-  /* Main */
-  background: ${(props) => (props.isSelected ? "#0500ff" : "#FFFFFF")};
-
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  /* identical to box height, or 157% */
-
-  color: ${(props) => (props.isSelected ? "#ffffff" : "#000000")};
-`;
-
-const DateText = styled.div``;
-
-const PeriodContainer = styled.div`
-  display: flex;
-  gap: 30px;
-  align-items: center;
-`;
-
-export const Period = ({ content, isSelected, dateContent }) => {
+const Period = ({ content, isNow, dateContent }: PeriodProps) => {
   return (
-    <PeriodContainer>
-      <Rectangle isSelected={isSelected}>{content}</Rectangle>
-      <DateText>{dateContent}</DateText>
-    </PeriodContainer>
+    <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
+      <StyledPeriod isNow={isNow}>
+        <div>{content}</div>
+      </StyledPeriod>
+      <div>{dateContent}</div>
+    </div>
   );
 };
+
+const StyledPeriod = styled.div<{ isNow: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  width: 130px;
+
+  background: ${(props) => (props.isNow ? "#0500FF" : "#f6f5ff")};
+  color: ${(props) => (props.isNow ? "white" : "#000000")};
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export default Period;
+/* Frame 225 */
