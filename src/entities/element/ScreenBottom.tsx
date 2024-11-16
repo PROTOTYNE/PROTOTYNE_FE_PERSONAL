@@ -16,7 +16,7 @@ const BottomContainer = styled.div`
   box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.05);
 `;
 
-export const Bottom = () => {
+export const ScreenBottom = () => {
   return (
     <BottomContainer>
       <img src={bookmark} /> <Button>체험 신청하기</Button>
