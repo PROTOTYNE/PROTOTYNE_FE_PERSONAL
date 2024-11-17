@@ -38,7 +38,7 @@ const HomePage = () => {
       </TitleContainer>
       <CardWrapper>
         {HotCardList.map((card) => (
-          <HotCard key={card.id} {...card} />
+          <HotCard key={card.id} {...card} participant />
         ))}
       </CardWrapper>
       <DivLine />

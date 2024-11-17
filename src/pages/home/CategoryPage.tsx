@@ -28,6 +28,7 @@ const CategoryPage = () => {
       });
     }
   };
+
   return (
     <PageWrapper>
       <CategoryContainer ref={containerRef}>
