@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
-import { HomeOn, HomeOff, Ticket, Search, My } from "@/shared";
+import { HomeOn, HomeOff, Ticket, Search, My, media } from "@/shared";
 import { colors } from "@/shared";
 
 const naviationInfo = [
@@ -59,6 +59,10 @@ const BackGround = styled.div`
   a {
     width: 20px;
   }
+
+  ${media.md`
+    display: none;
+  `}
 `;
 
 const NavLinkStyle = styled(NavLink)<{ name: string }>`

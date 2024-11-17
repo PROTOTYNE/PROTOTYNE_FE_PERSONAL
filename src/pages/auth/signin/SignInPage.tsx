@@ -60,19 +60,18 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  gap: 200px;
+  gap: 120px;
 
   > div {
     display: flex;
     flex-direction: column;
     gap: 5px;
 
-    margin-top: 200px;
+    margin-top: 130px;
 
     > span {
       width: 295px;
-      font-size: 19px;
-      font-weight: bold;
+      font-size: 16px;
     }
 
     > img {
