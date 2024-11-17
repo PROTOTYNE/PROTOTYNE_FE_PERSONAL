@@ -23,7 +23,7 @@ export const additionalInfoOptions: {
   },
   {
     name: "income",
-    label: "소득 수준 (단위: 만원)",
+    label: "소득 수준",
     options: [
       { value: 2000, label: "2000 이내 " },
       { value: 4000, label: "2000-4000" },

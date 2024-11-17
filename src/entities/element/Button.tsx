@@ -26,8 +26,11 @@ export const Button = styled.button`
 `;
 
 export const DisableButton = styled(Button)`
-  background: none;
-  background-color: ${colors.gray};
+  background: #d9d9d9;
+
+  border: 1px solid #d9d9d9;
+
+  color: white;
 `;
 
 export const TwoOptionsButton = ({
@@ -52,7 +55,7 @@ export const TwoOptionsButton = ({
 const BottomContainer = styled.div`
   position: fixed;
 
-  bottom: 30px;
+  bottom: 130px;
   left: 50%;
   transform: translate(-50%, 0%);
 
@@ -76,7 +79,8 @@ const LeftButton = styled.button`
   width: 28%;
   height: 100%;
 
-  background-color: ${colors.gray};
+  background-color: #d9d9d9;
+  border: 1px solid #d9d9d9;
 `;
 
 const RightButton = styled(LeftButton)`
@@ -85,4 +89,5 @@ const RightButton = styled(LeftButton)`
   width: 70%;
 
   background: ${colors.main};
+  border: 1px solid ${colors.main};
 `;

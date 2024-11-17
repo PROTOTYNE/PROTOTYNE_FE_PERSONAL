@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Button } from "@/entities";
+import { Button, DisableButton } from "@/entities";
 import { PAGE_URL, CheckBox, CheckedBox, colors, RightArr } from "@/shared";
 
 export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
@@ -84,13 +84,17 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
           </Link>
         </Element>
       )}
-      <Button
-        onClick={() => {
-          if (agree1 && agree2) nextHandler();
-        }}
-      >
-        계속하기
-      </Button>
+      {agree1 && agree2 ? (
+        <Button
+          onClick={() => {
+            if (agree1 && agree2) nextHandler();
+          }}
+        >
+          계속하기
+        </Button>
+      ) : (
+        <DisableButton>모든 항목을 동의해주세요!</DisableButton>
+      )}
     </>
   );
 };

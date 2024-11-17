@@ -7,7 +7,7 @@ import { PAGE_URL, RightArr } from "@/shared";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [phase, setPhase] = useState(1);
+  const [phase, setPhase] = useState(3); //수정 필수
 
   const backHandler = () => {
     if (phase > 1) setPhase(phase - 1);
@@ -31,7 +31,7 @@ const SignUpPage = () => {
         {phase < 2 ? (
           <AgreeForm nextHandler={nextHandler} />
         ) : phase < 3 ? (
-          <BasicInfoForm />
+          <BasicInfoForm nextHandler={nextHandler} />
         ) : (
           <AdditionalInfoForm />
         )}
@@ -49,7 +49,7 @@ const Container = styled.div`
   height: 100vh;
   transform: translate(-50%, 0%);
 
-  padding-top: 40px;
+  padding-top: 60px;
 
   gap: 8px;
 
