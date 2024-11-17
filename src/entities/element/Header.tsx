@@ -1,18 +1,12 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
-import { PAGE_URL, RightArr } from "@/shared";
+import { RightArr } from "@/shared";
 
-export const Header = () => {
-  const location = useLocation();
-
+export const Header = ({ isMain }: { isMain: boolean }) => {
   return (
     <BackGround>
-      {location.pathname === PAGE_URL.Home ||
-      location.pathname === PAGE_URL.Search ||
-      location.pathname === PAGE_URL.MyInfo ||
-      location.pathname === PAGE_URL.Ticket ? (
+      {isMain ? (
         <img src="./image/side.png"></img>
       ) : (
         <Link to={".."}>

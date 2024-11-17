@@ -1,15 +1,6 @@
 import styled from "@emotion/styled";
-import { NavLink, useLocation } from "react-router-dom";
-import {
-  HomeOn,
-  HomeOff,
-  Ticket,
-  Search,
-  My,
-  media,
-  colors,
-  PAGE_URL,
-} from "@/shared";
+import { NavLink } from "react-router-dom";
+import { HomeOn, HomeOff, Ticket, Search, My, media, colors } from "@/shared";
 
 const naviationInfo = [
   { path: "/home", imgName: "home", svg: HomeOn },
@@ -18,15 +9,10 @@ const naviationInfo = [
   { path: "/myinfo", imgName: "my", svg: My },
 ];
 
-export const Navigation = () => {
-  const location = useLocation();
-
+export const Navigation = ({ isMain }: { isMain: boolean }) => {
   return (
     <>
-      {location.pathname === PAGE_URL.Home ||
-      location.pathname === PAGE_URL.Search ||
-      location.pathname === PAGE_URL.MyInfo ||
-      location.pathname === PAGE_URL.Ticket ? (
+      {isMain ? (
         <BackGround>
           {naviationInfo.map((element) => (
             <NavLinkStyle
