@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { Button } from "@/entities";
 import { PAGE_URL, CheckBox, CheckedBox, colors, RightArr } from "@/shared";
 
-export const AgreeForm = () => {
+export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
   const [agree1, setAgree1] = useState<boolean>(false);
   const [agree2, setAgree2] = useState<boolean>(false);
   return (
@@ -83,28 +84,35 @@ export const AgreeForm = () => {
           </Link>
         </Element>
       )}
+      <Button
+        onClick={() => {
+          if (agree1 && agree2) nextHandler();
+        }}
+      >
+        계속하기
+      </Button>
     </>
   );
 };
 
-export const Title = styled.div`
+const Title = styled.div`
   width: 100%;
 
   position: relative;
   font-weight: bold;
   font-size: 23px;
 
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
-export const SubTitle = styled.div`
+const SubTitle = styled.div`
   font-size: 16px;
 
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 10px;
 `;
 
-export const Element = styled.div`
+const Element = styled.div`
   width: calc(100% - 40px);
 
   display: flex;
@@ -139,7 +147,7 @@ export const Element = styled.div`
   }
 `;
 
-export const MainElement = styled(Element)`
+const MainElement = styled(Element)`
   background-color: #f6f5ff;
 
   border-radius: 8px;

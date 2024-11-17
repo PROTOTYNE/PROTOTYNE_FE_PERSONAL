@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-import { Button } from "@/entities";
 import { AgreeForm, BasicInfoForm, AdditionalInfoForm } from "@/widget";
 import { PAGE_URL, RightArr } from "@/shared";
 
@@ -30,14 +29,13 @@ const SignUpPage = () => {
           transform="rotate(180) scale(2)"
         />
         {phase < 2 ? (
-          <AgreeForm />
+          <AgreeForm nextHandler={nextHandler} />
         ) : phase < 3 ? (
           <BasicInfoForm />
         ) : (
           <AdditionalInfoForm />
         )}
       </Container>
-      <Button onClick={nextHandler}>계속하기</Button>
     </>
   );
 };
@@ -52,6 +50,8 @@ const Container = styled.div`
   transform: translate(-50%, 0%);
 
   padding-top: 40px;
+
+  gap: 8px;
 
   display: flex;
   flex-direction: column;

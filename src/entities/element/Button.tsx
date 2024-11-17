@@ -4,7 +4,7 @@ import { colors } from "@/shared";
 export const Button = styled.button`
   position: fixed;
 
-  bottom: 30px;
+  bottom: 130px;
   left: 50%;
   transform: translate(-50%, 0%);
 

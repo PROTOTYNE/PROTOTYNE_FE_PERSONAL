@@ -29,7 +29,7 @@ const Container = styled.div`
 const TermsOfUsePage = () => (
   <Container>
     <Link to={PAGE_URL.SignUp}>
-      <Plus fill="black" transform="rotate(45) scale(1.5)" />
+      <Plus fill="black" transform="rotate(45) scale(1.0)" />
     </Link>
     <div>프로토타인 이용약관 </div>
     <span>제1조 (목적)</span>
