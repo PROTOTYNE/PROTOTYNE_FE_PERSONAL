@@ -8,8 +8,10 @@ import {
   Electronic,
   Toy,
   PAGE_URL,
+  colors,
+  All,
+  Beauty,
 } from "@/shared";
-import { colors, All, Beauty } from "@/shared";
 import styled from "@emotion/styled";
 import {
   HotCard,
@@ -43,7 +45,10 @@ const HomePage = () => {
       <CategoryContainer>
         {Categories.map((category, idx) => (
           <>
-            <Category key={category.name} onClick={category.onclick}>
+            <Category
+              key={category.name}
+              onClick={() => navigate("/category/" + category.type)}
+            >
               <category.icon />
               {category.name}
             </Category>
@@ -332,36 +337,36 @@ const Categories = [
   {
     name: "전체",
     icon: All,
-    onclick: () => {},
+    type: "all",
   },
   {
     name: "뷰티",
     icon: Beauty,
-    onclick: () => {},
+    type: "beauty",
   },
   {
     name: "스포츠",
     icon: Sports,
-    onclick: () => {},
+    type: "sports",
   },
   {
     name: "식품",
     icon: Food,
-    onclick: () => {},
+    type: "food",
   },
   {
     name: "의류",
     icon: Clothes,
-    onclick: () => {},
+    type: "clothes",
   },
   {
     name: "전자기기",
     icon: Electronic,
-    onclick: () => {},
+    type: "electronic",
   },
   {
     name: "장난감",
     icon: Toy,
-    onclick: () => {},
+    type: "toy",
   },
 ];

@@ -1,5 +1,6 @@
 import { BookmarkOutlined, TicketImg } from "@/shared";
 import styled from "@emotion/styled";
+import { colors } from "@/shared";
 
 interface NewCardProps {
   id: number;
@@ -9,19 +10,14 @@ interface NewCardProps {
   image: string;
 }
 
-export const NewCardBig = ({
-  title,
-  date,
-  image,
-  company,
-  ticket,
-}: NewCardProps) => {
+export const NewCardBig = ({ title, image, company, ticket }: NewCardProps) => {
   return (
     <CardWrapper>
       <img src={image} alt="new card" />
       <div className="right-info">
         <div id="title">
-          {title} <BookmarkOutlined />
+          <div>{title}</div>
+          <BookmarkOutlined fill={colors.main} />
         </div>
         <div id="company">{company}</div>
       </div>
@@ -61,6 +57,8 @@ const CardWrapper = styled.div`
     #title {
       font-size: 21px;
       font-weight: bold;
+      display: flex;
+      gap: 5px;
     }
     #company {
       font-size: 12px;
@@ -73,6 +71,7 @@ const CardWrapper = styled.div`
     right: 14px;
     display: flex;
     align-items: start;
+    justify-content: center;
     font-size: 12px;
     color: #667197;
     div {

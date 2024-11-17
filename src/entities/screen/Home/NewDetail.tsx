@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 
 export const NewDetail = () => {
   return (
-    <NewPageWrapper>
+    <PageWrapper style={{ paddingRight: 20 }}>
       <TitleContainer>
         <h1>
           신규 등록된 시제품 <New style={{ marginLeft: 7 }} />
@@ -17,13 +17,9 @@ export const NewDetail = () => {
           <NewCardBig key={card.id} {...card} />
         ))}
       </NewCardWrapper>
-    </NewPageWrapper>
+    </PageWrapper>
   );
 };
-
-const NewPageWrapper = styled(PageWrapper)`
-  padding: 0 20px;
-`;
 
 const NewCardWrapper = styled.div`
   display: flex;

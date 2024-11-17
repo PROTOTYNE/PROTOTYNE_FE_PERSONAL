@@ -9,6 +9,7 @@ interface HotCardProps {
   apply: number;
   ticket: number;
   image: string;
+  participant?: boolean;
 }
 
 export const HotCard = ({
@@ -18,10 +19,11 @@ export const HotCard = ({
   apply,
   ticket,
   image,
+  participant,
 }: HotCardProps) => {
   return (
     <CardContainer>
-      <ImageBox>
+      <ImageBox participant>
         <img src={image} alt="hot card" />
         <div>
           <TicketImg /> X {ticket}개
@@ -31,7 +33,7 @@ export const HotCard = ({
         <p id="title">{title}</p>
         <div>
           <p id="company">{company}</p>
-          <p id="apply">{apply}명 신청</p>
+          {participant && <p id="apply">{apply}명 신청</p>}
         </div>
       </DescContainer>
     </CardContainer>
@@ -43,10 +45,10 @@ const CardContainer = styled.div`
   flex-direction: column;
 `;
 
-const ImageBox = styled.div`
+const ImageBox = styled.div<{ participant: boolean }>`
   position: relative;
-  width: 137px;
-  height: 137px;
+  width: ${(participant) => (participant ? "85%" : "137px")};
+  height: ${(participant) => (participant ? "85%" : "137px")};
   border-radius: 9px;
   border: 1px solid #0500ff;
   padding: 10px;
