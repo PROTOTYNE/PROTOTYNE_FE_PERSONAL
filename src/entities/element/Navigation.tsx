@@ -1,7 +1,15 @@
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
-import { HomeOn, HomeOff, Ticket, Search, My, media } from "@/shared";
-import { colors } from "@/shared";
+import { NavLink, useLocation } from "react-router-dom";
+import {
+  HomeOn,
+  HomeOff,
+  Ticket,
+  Search,
+  My,
+  media,
+  colors,
+  PAGE_URL,
+} from "@/shared";
 
 const naviationInfo = [
   { path: "/home", imgName: "home", svg: HomeOn },
@@ -11,31 +19,40 @@ const naviationInfo = [
 ];
 
 export const Navigation = () => {
+  const location = useLocation();
+
   return (
-    <BackGround>
-      {naviationInfo.map((element) => (
-        <NavLinkStyle
-          key={element.path}
-          to={element.path}
-          name={element.imgName}
-        >
-          {({ isActive }) => (
-            <>
-              {element.imgName === "home" ? (
-                isActive ? (
-                  <HomeOn />
-                ) : (
-                  <HomeOff />
-                )
-              ) : (
-                <element.svg />
+    <>
+      {location.pathname === PAGE_URL.Home ||
+      location.pathname === PAGE_URL.Search ||
+      location.pathname === PAGE_URL.MyInfo ||
+      location.pathname === PAGE_URL.Ticket ? (
+        <BackGround>
+          {naviationInfo.map((element) => (
+            <NavLinkStyle
+              key={element.path}
+              to={element.path}
+              name={element.imgName}
+            >
+              {({ isActive }) => (
+                <>
+                  {element.imgName === "home" ? (
+                    isActive ? (
+                      <HomeOn />
+                    ) : (
+                      <HomeOff />
+                    )
+                  ) : (
+                    <element.svg />
+                  )}
+                  <span>{element.imgName}</span>
+                </>
               )}
-              <span>{element.imgName}</span>
-            </>
-          )}
-        </NavLinkStyle>
-      ))}
-    </BackGround>
+            </NavLinkStyle>
+          ))}
+        </BackGround>
+      ) : null}
+    </>
   );
 };
 

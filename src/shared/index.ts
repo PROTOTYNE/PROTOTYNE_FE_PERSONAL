@@ -12,8 +12,10 @@ export { breakpoints, media } from "./configs/breakpoints";
 export { colors } from "./configs/colors";
 
 export { useUserStore } from "./hooks/stores/useUserStore";
+export { useReviewStore } from "./hooks/stores/useReviewStore";
 
 export { AuthService } from "./hooks/services/AuthService";
+export { ReviewService } from "./hooks/services/ReviewService";
 
 export { default as HomeOn } from "./svg/homeOn.svg?react";
 export { default as HomeOff } from "./svg/homeOff.svg?react";

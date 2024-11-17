@@ -7,7 +7,7 @@ import { PAGE_URL, RightArr } from "@/shared";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [phase, setPhase] = useState(3); //수정 필수
+  const [phase, setPhase] = useState(1); //수정 필수
 
   const backHandler = () => {
     if (phase > 1) setPhase(phase - 1);

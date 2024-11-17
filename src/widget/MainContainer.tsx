@@ -15,11 +15,11 @@ export const MainContainer = () => (
 const ContentContainer = styled.div`
   position: fixed;
 
-  top: 70px;
+  top: 80px;
   left: 0px;
 
   width: 100%;
-  height: calc(100% - 150px);
+  height: calc(100% - 160px);
 
   overflow-y: auto;
 `;
