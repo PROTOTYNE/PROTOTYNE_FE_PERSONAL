@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { BsBookmarkCheckFill } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
 interface DetailBottomProps {
   isBookmarked: boolean;
@@ -30,6 +31,8 @@ export const DetailBottom = ({
   isBookmarked,
 }: DetailBottomProps) => {
   const [isBookmark, setIsBookmark] = useState(isBookmarked);
+  const navigate = useNavigate();
+
   const currentDate = new Date().toISOString().split("T")[0]; // 현재 날짜 (YYYY-MM-DD)
 
   const isNow = (start: string, end: string): boolean => {
@@ -38,6 +41,10 @@ export const DetailBottom = ({
 
   const handleBookmark = () => {
     setIsBookmark(!isBookmark);
+  };
+
+  const handleApply = () => {
+    navigate("/addressinfo/:id");
   };
 
   return (
@@ -57,11 +64,11 @@ export const DetailBottom = ({
       )}
 
       <div>
-        {currentDate < dateInfo.endDate && (
+        {currentDate < dateInfo.eventStart && (
           <DisableButton>체험 신청하기</DisableButton>
         )}
         {isNow(dateInfo.eventStart, dateInfo.eventEnd) && (
-          <Button>체험 신청하기</Button>
+          <Button onClick={handleApply}>체험 신청하기</Button>
         )}
         {isNow(dateInfo.eventEnd, dateInfo.releaseStart) && (
           <DisableButton>당첨자 발표 대기 중</DisableButton>
@@ -113,17 +120,16 @@ const DisableButton = styled(Button)`
   background-color: #d9d9d9;
 `;
 
-const BottomContainer = styled.div`
+export const BottomContainer = styled.div`
   width: 100vw;
   height: 100px;
   box-sizing: border-box;
-  /* Rectangle 11188 */
-  position: sticky;
-  bottom: 0; /* 뷰포트 하단에 고정 */
-  z-index: 10; /* 다른 요소 위에 표시 */
-  display: block;
+  position: fixed; /* Fixed to the viewport */
+  bottom: 80px; /* Stick to the bottom */
+  z-index: 10;
   background: #ffffff;
   display: flex;
+
   justify-content: space-evenly;
   align-items: center;
   box-shadow: 0px -10px 5px -2px rgba(0, 0, 0, 0.05);
