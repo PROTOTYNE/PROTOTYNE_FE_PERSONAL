@@ -20,6 +20,7 @@ export enum PAGE_URL {
   Ticket = "/ticket",
 
   Search = "/search",
+  Category = "/category/:type",
   PopularDetail = "/detail/popular",
   ImminentDetail = "/detail/imminent",
   NewDetail = "/detail/new",

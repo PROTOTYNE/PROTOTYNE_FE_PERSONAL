@@ -38,7 +38,8 @@ const AddressInfo = lazy(
 const Ticket = lazy(() => import("@/pages/ticket/TicketPage"));
 
 const Search = lazy(() => import("@/pages/search/SearchPage"));
-const Detail = lazy(() => import("@/pages/home/detail/DetailPage"));
+const Detail = lazy(() => import("@/pages/home/DetailPage"));
+const Category = lazy(() => import("@/pages/home/CategoryPage"));
 const Bookmark = lazy(() => import("@/pages/bookmark/BookmarkPage"));
 
 const Alarm = lazy(() => import("@/pages/alarm/AlarmPage"));
@@ -78,6 +79,7 @@ const PageRouter = () => (
               <Route path={PAGE_URL.Ticket} element={<Ticket />} />
 
               <Route path={PAGE_URL.Search} element={<Search />} />
+              <Route path={PAGE_URL.Category} element={<Category />} />
               <Route
                 path={PAGE_URL.PopularDetail}
                 element={<Detail type="popular" />}

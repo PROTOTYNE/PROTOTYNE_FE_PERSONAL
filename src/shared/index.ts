@@ -47,5 +47,11 @@ export { default as Star } from "./svg/star.svg?react";
 export { default as TicketImg } from "./svg/ticketImg.svg?react";
 export { default as Toy } from "./svg/toy.svg?react";
 export { default as WarningCircled } from "./svg/warningCircled.svg?react";
+
 export { default as CheckBox } from "./svg/checkBox.svg?react";
 export { default as CheckedBox } from "./svg/checkedBox.svg?react";
+
+export { default as New } from "./svg/new.svg?react";
+export { default as All } from "./svg/all.svg?react";
+export { default as BookmarkOutlined } from "./svg/bookmarkoutlined.svg?react";
+export { default as DropdownArr } from "./svg/dropdownArr.svg?react";
