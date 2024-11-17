@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
 import { Button, DisableButton } from "@/entities";
-import { PAGE_URL, useReviewStore, ReviewService } from "@/shared";
+import { PAGE_URL, useReviewStore, ReviewService, colors } from "@/shared";
 
 const ReviewPage = () => {
   const { id } = useParams();
@@ -66,6 +66,7 @@ const ReviewPage = () => {
           label="사용한 이미지를 붙여주세요!"
         />
         <Repurchase />
+        <div style={{ height: "100px" }}></div>
       </ScrollArea>
       {multiChoiceAnswers.findIndex((answer) => answer === 0) === -1 &&
       subjectAnswer.length > 30 &&
@@ -89,12 +90,30 @@ const ReviewPage = () => {
 
 export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
   <div style={{ position: "relative" }}>
+    <GradientBox />
     <ScrollBox>
       <ScrollContainer>{children}</ScrollContainer>
       <div style={{ height: "30px" }}></div>
     </ScrollBox>
   </div>
 );
+
+const GradientBox = styled.div`
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  height: 70vh;
+
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 80%,
+    #ffffff 100%
+  );
+`;
 
 const ScrollBox = styled.div`
   position: absolute;
@@ -103,8 +122,8 @@ const ScrollBox = styled.div`
   transform: translate(-50%, 0%);
 
   width: 332px;
-  top: 60px;
-  height: 80vh;
+  top: 0px;
+  height: 70vh;
 
   border-radius: 4px;
 
@@ -114,7 +133,7 @@ const ScrollBox = styled.div`
   padding-left: 5px;
   padding-right: 5px;
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-thumb {
@@ -126,7 +145,7 @@ const ScrollBox = styled.div`
     background-color: #dcdcdc;
 
     border-radius: 5px;
-  }
+  } */
 `;
 
 const ScrollContainer = styled.div`
@@ -139,14 +158,13 @@ const ScrollContainer = styled.div`
 
 export const Label = styled.div`
   margin-top: 30px;
-  font-size: 17px;
-  font-weight: bold;
+  font-size: 16px;
 `;
 
 const ChoicesContainer = styled.div`
   width: 100%;
 
-  margin-top: 10px;
+  margin-top: 14px;
 
   display: flex;
   flex-direction: row;
@@ -155,8 +173,8 @@ const ChoicesContainer = styled.div`
 `;
 
 const ChoiceContainer = styled.div`
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
 
   input {
     display: none; /* 기본 체크박스 숨김 */
@@ -171,11 +189,11 @@ const ChoiceContainer = styled.div`
 
   label::before {
     content: "";
-    width: 17px;
-    height: 17px;
+    width: 5px;
+    height: 5px;
 
     border-radius: 50%; /* 원형으로 만듦 */
-    border: 3px solid #c4c4c4;
+    border: 10px solid #c4c4c4;
     display: inline-block;
     position: relative;
 
@@ -184,7 +202,7 @@ const ChoiceContainer = styled.div`
   }
 
   input:checked + label::before {
-    background-color: #667197;
+    border-color: ${colors.main};
   }
 
   input:checked + label::before::after {
@@ -212,9 +230,7 @@ export const MultiChoiceQuestion = ({
   onChange: (num: number) => void;
 }) => (
   <>
-    <Label>
-      [{index}] {label}
-    </Label>
+    <Label>Q. {label}</Label>
     <ChoicesContainer>
       {[1, 2, 3, 4, 5].map((num) => (
         <ChoiceContainer key={num}>
@@ -368,7 +384,9 @@ export const Repurchase = () => {
             setRepurchase(true);
           }}
         />
-        <label htmlFor="yes">있음</label>
+        <label htmlFor="yes">할래요</label>
+      </RepurchaseChoiceContainer>
+      <RepurchaseChoiceContainer>
         <input
           type="checkbox"
           id="no"
@@ -377,7 +395,7 @@ export const Repurchase = () => {
             setRepurchase(false);
           }}
         />
-        <label htmlFor="no">없음</label>
+        <label htmlFor="no">안 할래요</label>
       </RepurchaseChoiceContainer>
     </RepurchaseContainer>
   );
@@ -400,9 +418,11 @@ const RepurchaseChoiceContainer = styled(ChoiceContainer)`
   display: flex;
 
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 
-  margin-top: 10px;
+  margin-top: 15px;
+
+  margin-left: 2px;
 
   font-weight: normal;
 
