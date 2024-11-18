@@ -18,6 +18,15 @@ const SavedAddressInfo = ({
   deliveryPhone,
 }: SavedAddressInfoProps) => {
   const navigate = useNavigate();
+  const ticket = 10;
+  const handleSubmit = () => {
+    if (ticket) {
+      console.log("체험 신청 완료");
+    } else {
+      console.log("체험 신청 실패");
+    }
+  };
+
   return (
     <div>
       <div>배송 주소</div>
@@ -39,7 +48,7 @@ const SavedAddressInfo = ({
       </div>
       <BottomContainer>
         <div style={{ width: "80%" }}>
-          <BlueButton>체험 신청하기</BlueButton>
+          <BlueButton onClick={handleSubmit}>체험 신청하기</BlueButton>
         </div>
       </BottomContainer>
     </div>

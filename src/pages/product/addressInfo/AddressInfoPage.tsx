@@ -6,7 +6,7 @@ const mockResponse = {
   apply: true,
   deliveryName: "조서영",
   deliveryPhone: "010-1234-1234",
-  baseAddress: "gfesfds",
+  baseAddress: "",
   detailAddress: "123동 123호",
 };
 
@@ -35,6 +35,7 @@ const AddressInfoPage = () => {
 
   return (
     <>
+    {/*스웨거에 리스트로 변경되면 리스트 길이로 변경하기 address.length > 0 ?*/}
       {mockResponse.baseAddress ? (
         <SavedAddressInfo
           deliveryName={mockResponse.deliveryName}
@@ -43,6 +44,7 @@ const AddressInfoPage = () => {
           deliveryPhone={mockResponse.deliveryPhone}
         />
       ) : (
+        //스웨거 isBasic, isSelected 반영되면 변경하기 
         <NewAddressForm
           isBasic={isBasic}
           onToggleBasic={handleClickBasic}
