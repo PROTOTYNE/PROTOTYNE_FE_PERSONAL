@@ -259,9 +259,7 @@ export const SubjectiveQuestion = ({
   onChange: (content: string) => void;
 }) => (
   <>
-    <Label>
-      [{index}] {label} (30자 이상)
-    </Label>
+    <Label>Q. {label} (30자 이상)</Label>
     <Textarea
       onChange={(event) => {
         onChange(event.target.value);
@@ -271,43 +269,40 @@ export const SubjectiveQuestion = ({
 );
 
 const Textarea = styled.textarea`
-  width: calc(94% - 16px);
-  height: 100px;
+  width: calc(100% - 12px);
+  height: 120px;
+
+  margin-left: -6px;
 
   position: relative;
   left: 2%;
 
-  border: 2px solid #c4c4c4;
+  border: 2px solid ${colors.main};
   border-radius: 10px;
 
+  padding-top: 6px;
   padding-left: 6px;
   padding-right: 6px;
 
-  margin-top: 10px;
+  margin-top: 12px;
 `;
 
-export const ImageQuestion = ({
-  index,
-  label,
-}: {
-  index: number;
-  label: string;
-}) => {
+export const ImageQuestion = ({ label }: { index: number; label: string }) => {
   const addImage = useReviewStore((state) => state.addImage);
   const images = useReviewStore((state) => state.images);
 
   return (
     <>
-      <Label>
-        [{index}] {label}
-      </Label>
+      <Label>Q. {label}</Label>
       <ImageContainer>
         {images.map((image, index) => (
           <ImageBlock key={index} src={URL.createObjectURL(image)}></ImageBlock>
         ))}
         {images.length < 3 ? (
           <>
-            <AddImageBlock htmlFor="upload">+</AddImageBlock>
+            <AddImageBlock htmlFor="upload">
+              <span>+</span>
+            </AddImageBlock>
             <input
               type="file"
               id="upload"
@@ -334,12 +329,12 @@ const ImageContainer = styled.div`
 
   justify-content: flex-start;
 
-  margin-top: 8px;
+  margin-top: 12px;
 `;
 
 const ImageBlock = styled.div`
-  width: 101px;
-  height: 101px;
+  width: 76px;
+  height: 76px;
 
   background-image: url(${(props: { src: string }) => props.src});
   background-size: cover;
@@ -347,25 +342,29 @@ const ImageBlock = styled.div`
   background-repeat: no-repeat;
 
   border-radius: 10px;
+  border: 2px solid ${colors.main};
 
   margin-right: 10px;
 `;
 
 const AddImageBlock = styled.label`
-  width: 101px;
-  height: 101px;
+  position: relative;
+  margin: 20px 20px 20px 20px;
+  width: 40px;
+  height: 40px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 60px;
 
-  font-size: 50px;
+  background-color: #e4e3e3;
 
-  background-color: #d9d9d9;
+  > span {
+    position: absolute;
+    top: -6px;
+    left: 8.5px;
 
-  border-radius: 10px;
-
-  color: white;
+    color: ${colors.main};
+    font-size: 40px;
+  }
 `;
 
 export const Repurchase = () => {
