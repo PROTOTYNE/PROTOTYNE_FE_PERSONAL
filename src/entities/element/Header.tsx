@@ -30,13 +30,15 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
       </BackGround>
 
       <MdBackGround>
-        <Container>
-          <img style={{ width: "53px" }} src="./logo/default.png"></img>
-          <img
-            style={{ width: "160px", marginTop: "8px" }}
-            src="./logo/title.png"
-          ></img>
-        </Container>
+        <Link to={"/home"}>
+          <Container>
+            <img style={{ width: "53px" }} src="./logo/default.png"></img>
+            <img
+              style={{ width: "160px", marginTop: "8px" }}
+              src="./logo/title.png"
+            ></img>
+          </Container>
+        </Link>
         <Link to={PAGE_URL.Ticket}>
           <Title>Ticket</Title>
         </Link>
