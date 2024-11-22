@@ -2,8 +2,14 @@ import styled from "@emotion/styled";
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
-import { Button, DisableButton } from "@/entities";
-import { PAGE_URL, useReviewStore, ReviewService } from "@/shared";
+import { Button, DisableButton, Title } from "@/entities";
+import {
+  PAGE_URL,
+  useReviewStore,
+  ReviewService,
+  colors,
+  media,
+} from "@/shared";
 
 const ReviewPage = () => {
   const { id } = useParams();
@@ -44,6 +50,7 @@ const ReviewPage = () => {
   return (
     <>
       <ScrollArea>
+        <Title>리뷰 작성</Title>
         {multiChoiceQuestion.map((question, index) => (
           <MultiChoiceQuestion
             key={index}
@@ -66,6 +73,7 @@ const ReviewPage = () => {
           label="사용한 이미지를 붙여주세요!"
         />
         <Repurchase />
+        <div style={{ height: "100px" }}></div>
       </ScrollArea>
       {multiChoiceAnswers.findIndex((answer) => answer === 0) === -1 &&
       subjectAnswer.length > 30 &&
@@ -87,14 +95,32 @@ const ReviewPage = () => {
   );
 };
 
-export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
+const ScrollArea = ({ children }: { children: React.ReactNode }) => (
   <div style={{ position: "relative" }}>
+    <GradientBox />
     <ScrollBox>
       <ScrollContainer>{children}</ScrollContainer>
       <div style={{ height: "30px" }}></div>
     </ScrollBox>
   </div>
 );
+
+const GradientBox = styled.div`
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  height: 70vh;
+
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 95%,
+    #ffffff 100%
+  );
+`;
 
 const ScrollBox = styled.div`
   position: absolute;
@@ -103,8 +129,8 @@ const ScrollBox = styled.div`
   transform: translate(-50%, 0%);
 
   width: 332px;
-  top: 60px;
-  height: 80vh;
+  top: 0px;
+  height: 70vh;
 
   border-radius: 4px;
 
@@ -114,7 +140,11 @@ const ScrollBox = styled.div`
   padding-left: 5px;
   padding-right: 5px;
 
-  ::-webkit-scrollbar {
+  ${media.md`
+    width: 80%;
+  `};
+
+  /* ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-thumb {
@@ -126,7 +156,7 @@ const ScrollBox = styled.div`
     background-color: #dcdcdc;
 
     border-radius: 5px;
-  }
+  } */
 `;
 
 const ScrollContainer = styled.div`
@@ -135,18 +165,32 @@ const ScrollContainer = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+
+  ${media.md`
+    gap: 30px;
+  `}
 `;
 
-export const Label = styled.div`
+const Label = styled.div`
   margin-top: 30px;
-  font-size: 17px;
-  font-weight: bold;
+  font-size: 16px;
+
+  ${media.md`
+    font-weight: bold;
+    margin-left: 5px;
+
+    font-size: 18px;
+  `}
+
+  ${media.lg`
+    margin-left: 24px;
+  `}
 `;
 
 const ChoicesContainer = styled.div`
   width: 100%;
 
-  margin-top: 10px;
+  margin-top: 14px;
 
   display: flex;
   flex-direction: row;
@@ -155,8 +199,13 @@ const ChoicesContainer = styled.div`
 `;
 
 const ChoiceContainer = styled.div`
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+
+  ${media.md`
+    margin-left: 9%;
+    margin-right: 11%;
+  `}
 
   input {
     display: none; /* 기본 체크박스 숨김 */
@@ -171,11 +220,11 @@ const ChoiceContainer = styled.div`
 
   label::before {
     content: "";
-    width: 17px;
-    height: 17px;
+    width: 5px;
+    height: 5px;
 
     border-radius: 50%; /* 원형으로 만듦 */
-    border: 3px solid #c4c4c4;
+    border: 10px solid #c4c4c4;
     display: inline-block;
     position: relative;
 
@@ -184,7 +233,7 @@ const ChoiceContainer = styled.div`
   }
 
   input:checked + label::before {
-    background-color: #667197;
+    border-color: ${colors.main};
   }
 
   input:checked + label::before::after {
@@ -200,7 +249,7 @@ const ChoiceContainer = styled.div`
   }
 `;
 
-export const MultiChoiceQuestion = ({
+const MultiChoiceQuestion = ({
   index,
   label,
   state,
@@ -212,9 +261,7 @@ export const MultiChoiceQuestion = ({
   onChange: (num: number) => void;
 }) => (
   <>
-    <Label>
-      [{index}] {label}
-    </Label>
+    <Label>Q. {label}</Label>
     <ChoicesContainer>
       {[1, 2, 3, 4, 5].map((num) => (
         <ChoiceContainer key={num}>
@@ -233,8 +280,7 @@ export const MultiChoiceQuestion = ({
   </>
 );
 
-export const SubjectiveQuestion = ({
-  index,
+const SubjectiveQuestion = ({
   label,
   onChange,
 }: {
@@ -243,9 +289,7 @@ export const SubjectiveQuestion = ({
   onChange: (content: string) => void;
 }) => (
   <>
-    <Label>
-      [{index}] {label} (30자 이상)
-    </Label>
+    <Label>Q. {label} (30자 이상)</Label>
     <Textarea
       onChange={(event) => {
         onChange(event.target.value);
@@ -255,43 +299,46 @@ export const SubjectiveQuestion = ({
 );
 
 const Textarea = styled.textarea`
-  width: calc(94% - 16px);
-  height: 100px;
+  width: calc(100% - 12px);
+  height: 160px;
+
+  margin-left: -6px;
 
   position: relative;
   left: 2%;
 
-  border: 2px solid #c4c4c4;
+  border: 2px solid ${colors.main};
   border-radius: 10px;
 
+  padding-top: 6px;
   padding-left: 6px;
   padding-right: 6px;
 
-  margin-top: 10px;
+  margin-top: 12px;
+
+  ${media.md`
+    width: calc(95% - 12px);
+    height: 140px;
+    font-size: 18px;
+  `}
 `;
 
-export const ImageQuestion = ({
-  index,
-  label,
-}: {
-  index: number;
-  label: string;
-}) => {
+const ImageQuestion = ({ label }: { index: number; label: string }) => {
   const addImage = useReviewStore((state) => state.addImage);
   const images = useReviewStore((state) => state.images);
 
   return (
     <>
-      <Label>
-        [{index}] {label}
-      </Label>
+      <Label>Q. {label}</Label>
       <ImageContainer>
         {images.map((image, index) => (
           <ImageBlock key={index} src={URL.createObjectURL(image)}></ImageBlock>
         ))}
         {images.length < 3 ? (
           <>
-            <AddImageBlock htmlFor="upload">+</AddImageBlock>
+            <AddImageBlock htmlFor="upload">
+              <span>+</span>
+            </AddImageBlock>
             <input
               type="file"
               id="upload"
@@ -318,12 +365,16 @@ const ImageContainer = styled.div`
 
   justify-content: flex-start;
 
-  margin-top: 8px;
+  margin-top: 12px;
+
+  ${media.md`
+    margin-left: 3%;
+  `}
 `;
 
 const ImageBlock = styled.div`
-  width: 101px;
-  height: 101px;
+  width: 76px;
+  height: 76px;
 
   background-image: url(${(props: { src: string }) => props.src});
   background-size: cover;
@@ -331,28 +382,37 @@ const ImageBlock = styled.div`
   background-repeat: no-repeat;
 
   border-radius: 10px;
+  border: 2px solid ${colors.main};
 
   margin-right: 10px;
+
+  ${media.md`
+    width: 146px;
+    height: 146px;
+  `}
 `;
 
 const AddImageBlock = styled.label`
-  width: 101px;
-  height: 101px;
+  position: relative;
+  margin: 55px 55px 55px 55px;
+  width: 40px;
+  height: 40px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 60px;
 
-  font-size: 50px;
+  background-color: #e4e3e3;
 
-  background-color: #d9d9d9;
+  > span {
+    position: absolute;
+    top: -6px;
+    left: 8.5px;
 
-  border-radius: 10px;
-
-  color: white;
+    color: ${colors.main};
+    font-size: 40px;
+  }
 `;
 
-export const Repurchase = () => {
+const Repurchase = () => {
   const setRepurchase = useReviewStore((state) => state.setRepurchase);
   const answer6 = useReviewStore((state) => state.answer6);
 
@@ -368,7 +428,9 @@ export const Repurchase = () => {
             setRepurchase(true);
           }}
         />
-        <label htmlFor="yes">있음</label>
+        <label htmlFor="yes">할래요</label>
+      </RepurchaseChoiceContainer>
+      <RepurchaseChoiceContainer>
         <input
           type="checkbox"
           id="no"
@@ -377,7 +439,7 @@ export const Repurchase = () => {
             setRepurchase(false);
           }}
         />
-        <label htmlFor="no">없음</label>
+        <label htmlFor="no">안 할래요</label>
       </RepurchaseChoiceContainer>
     </RepurchaseContainer>
   );
@@ -391,7 +453,14 @@ const RepurchaseContainer = styled.div`
   margin-top: 35px;
 
   font-size: 17px;
-  font-weight: bold;
+
+  ${media.md`
+    font-weight: bold;
+  `}
+
+  ${media.lg`
+    margin-left: 22px;
+  `}
 `;
 
 const RepurchaseChoiceContainer = styled(ChoiceContainer)`
@@ -400,9 +469,11 @@ const RepurchaseChoiceContainer = styled(ChoiceContainer)`
   display: flex;
 
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 
-  margin-top: 10px;
+  margin-top: 15px;
+
+  margin-left: 2px;
 
   font-weight: normal;
 
@@ -414,6 +485,11 @@ const RepurchaseChoiceContainer = styled(ChoiceContainer)`
   label::before {
     margin-right: 10px;
   }
+
+  ${media.md`
+    margin-left: 2%;
+    margin-top: 40px;
+  `}
 `;
 
 export default ReviewPage;
