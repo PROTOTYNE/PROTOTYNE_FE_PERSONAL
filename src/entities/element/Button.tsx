@@ -28,6 +28,7 @@ export const Button = styled.button`
     left: calc(100% - 55px);
     transform: translate(-100%, 0%);
     width: 230px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.363);
   `}
 `;
 

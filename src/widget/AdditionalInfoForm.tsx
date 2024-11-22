@@ -1,10 +1,21 @@
 import styled from "@emotion/styled";
-import { TwoOptionsButton, SelectInput, MultiSelectInput } from "@/entities";
-import { colors, useUserStore, additionalInfoOptions } from "@/shared";
+import {
+  TwoOptionsButton,
+  SelectInput,
+  MultiSelectInput,
+  Button,
+} from "@/entities";
+import {
+  colors,
+  useUserStore,
+  additionalInfoOptions,
+  useLayoutStore,
+  media,
+} from "@/shared";
 
 export const AdditionalInfoForm = () => {
   const userStore = useUserStore();
-
+  const md = useLayoutStore();
   return (
     <>
       <Title>
@@ -84,12 +95,14 @@ export const AdditionalInfoForm = () => {
             );
         })}
       </ScrollArea>
-      <TwoOptionsButton
-        leftText="건너뛰기"
-        rightText="가입하기"
-        OnClickRight={() => {}}
-        onClickLeft={() => {}}
-      />
+      {md ? null : (
+        <TwoOptionsButton
+          leftText="건너뛰기"
+          rightText="가입하기"
+          OnClickRight={() => {}}
+          onClickLeft={() => {}}
+        />
+      )}
     </>
   );
 };
@@ -130,6 +143,14 @@ const Title = styled.div`
   > span {
     color: ${colors.main};
   }
+
+  ${media.md`
+    font-size: 28px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    margin-top: 100px;
+  `};
 `;
 
 const SubTitle = styled.div`
@@ -144,7 +165,7 @@ const SubTitle = styled.div`
 `;
 
 const ScrollArea = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ position: "relative" }}>
+  <div style={{ position: "relative", width: "100%" }}>
     <GradientBox />
     <ScrollBox>
       <ScrollContainer>{children}</ScrollContainer>

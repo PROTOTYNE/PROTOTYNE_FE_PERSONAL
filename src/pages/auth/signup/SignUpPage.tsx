@@ -3,11 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import { AgreeForm, BasicInfoForm, AdditionalInfoForm } from "@/widget";
-import { PAGE_URL, RightArr } from "@/shared";
+import { media, PAGE_URL, RightArr, useLayoutStore } from "@/shared";
+import { Button } from "@/entities";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [phase, setPhase] = useState(1); //수정 필수
+
+  const md = useLayoutStore((state) => state.md);
 
   const backHandler = () => {
     if (phase > 1) setPhase(phase - 1);
@@ -28,7 +31,13 @@ const SignUpPage = () => {
           stroke="black"
           transform="rotate(180) scale(2)"
         />
-        {phase < 2 ? (
+        {md ? (
+          <>
+            <AgreeForm />
+            <BasicInfoForm />
+            <AdditionalInfoForm />
+          </>
+        ) : phase < 2 ? (
           <AgreeForm nextHandler={nextHandler} />
         ) : phase < 3 ? (
           <BasicInfoForm nextHandler={nextHandler} />
@@ -36,6 +45,7 @@ const SignUpPage = () => {
           <AdditionalInfoForm />
         )}
       </Container>
+      {md ? <Button></Button> : null}
     </>
   );
 };
@@ -57,6 +67,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
+
+  ${media.md`
+    overflow-y: scroll;
+    width: 80%;
+  `};
 `;
 
 export default SignUpPage;

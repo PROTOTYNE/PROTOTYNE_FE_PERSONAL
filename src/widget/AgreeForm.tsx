@@ -3,9 +3,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Button, DisableButton } from "@/entities";
-import { PAGE_URL, CheckBox, CheckedBox, colors, RightArr } from "@/shared";
+import {
+  PAGE_URL,
+  CheckBox,
+  CheckedBox,
+  colors,
+  RightArr,
+  media,
+} from "@/shared";
 
-export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
+export const AgreeForm = ({ nextHandler }: { nextHandler?: () => void }) => {
   const [agree1, setAgree1] = useState<boolean>(false);
   const [agree2, setAgree2] = useState<boolean>(false);
   return (
@@ -84,17 +91,19 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
           </Link>
         </Element>
       )}
-      {agree1 && agree2 ? (
-        <Button
-          onClick={() => {
-            if (agree1 && agree2) nextHandler();
-          }}
-        >
-          계속하기
-        </Button>
-      ) : (
-        <DisableButton>모든 항목을 동의해주세요!</DisableButton>
-      )}
+      {nextHandler ? (
+        agree1 && agree2 ? (
+          <Button
+            onClick={() => {
+              if (agree1 && agree2) nextHandler();
+            }}
+          >
+            계속하기
+          </Button>
+        ) : (
+          <DisableButton>모든 항목을 동의해주세요!</DisableButton>
+        )
+      ) : null}
     </>
   );
 };
@@ -107,6 +116,14 @@ const Title = styled.div`
   font-size: 23px;
 
   margin-top: 40px;
+
+  ${media.md`
+    font-size: 28px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+margin-top: 100px;
+  `};
 `;
 
 const SubTitle = styled.div`
