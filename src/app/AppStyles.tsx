@@ -12,6 +12,10 @@ const Styles = css`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  a {
+    text-decoration-line: none;
+  }
 `;
 
 const AppStyles = () => <Global styles={Styles}></Global>;
