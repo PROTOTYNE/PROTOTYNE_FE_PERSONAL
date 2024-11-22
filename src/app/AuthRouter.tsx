@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //import { PAGE_URL, getAccess, setAccess, AuthService } from "@/shared";
+import { WindowSizeListener } from "@/shared";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,10 @@ const AuthRouter = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <WindowSizeListener />
+      {children}
+    </QueryClientProvider>
   );
 };
 

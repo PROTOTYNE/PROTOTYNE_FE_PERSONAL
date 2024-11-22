@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Header, Navigation } from "@/entities";
-import { PAGE_URL } from "@/shared";
+import { media, PAGE_URL } from "@/shared";
 import { Outlet } from "react-router";
 
 import { useLocation } from "react-router-dom";
@@ -22,6 +22,10 @@ export const MainContainer = () => {
 
     width: 100%;
     height: ${isMain ? "calc(100% - 160px)" : "calc(100% - 80px)"};
+
+    ${media.md`
+      height: calc(100% - 80px);
+    `}
 
     overflow-y: auto;
   `;
