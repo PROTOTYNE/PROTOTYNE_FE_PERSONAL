@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors } from "@/shared";
+import { colors, media } from "@/shared";
 
 export const Button = styled.button`
   position: fixed;
@@ -23,6 +23,12 @@ export const Button = styled.button`
 
   border-radius: 8px;
   border-color: ${colors.main};
+
+  ${media.md`
+    left: calc(100% - 55px);
+    transform: translate(-100%, 0%);
+    width: 230px;
+  `}
 `;
 
 export const DisableButton = styled(Button)`

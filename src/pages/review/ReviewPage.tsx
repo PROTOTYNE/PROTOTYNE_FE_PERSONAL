@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
-import { Button, DisableButton } from "@/entities";
+import { Button, DisableButton, Title } from "@/entities";
 import {
   PAGE_URL,
   useReviewStore,
@@ -50,6 +50,7 @@ const ReviewPage = () => {
   return (
     <>
       <ScrollArea>
+        <Title>리뷰 작성</Title>
         {multiChoiceQuestion.map((question, index) => (
           <MultiChoiceQuestion
             key={index}
@@ -94,7 +95,7 @@ const ReviewPage = () => {
   );
 };
 
-export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
+const ScrollArea = ({ children }: { children: React.ReactNode }) => (
   <div style={{ position: "relative" }}>
     <GradientBox />
     <ScrollBox>
@@ -164,14 +165,25 @@ const ScrollContainer = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+
+  ${media.md`
+    gap: 30px;
+  `}
 `;
 
-export const Label = styled.div`
+const Label = styled.div`
   margin-top: 30px;
   font-size: 16px;
 
   ${media.md`
-    font-weight: bold
+    font-weight: bold;
+    margin-left: 5px;
+
+    font-size: 18px;
+  `}
+
+  ${media.lg`
+    margin-left: 24px;
   `}
 `;
 
@@ -191,8 +203,8 @@ const ChoiceContainer = styled.div`
   margin-right: 25px;
 
   ${media.md`
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 9%;
+    margin-right: 11%;
   `}
 
   input {
@@ -237,7 +249,7 @@ const ChoiceContainer = styled.div`
   }
 `;
 
-export const MultiChoiceQuestion = ({
+const MultiChoiceQuestion = ({
   index,
   label,
   state,
@@ -268,7 +280,7 @@ export const MultiChoiceQuestion = ({
   </>
 );
 
-export const SubjectiveQuestion = ({
+const SubjectiveQuestion = ({
   label,
   onChange,
 }: {
@@ -288,7 +300,7 @@ export const SubjectiveQuestion = ({
 
 const Textarea = styled.textarea`
   width: calc(100% - 12px);
-  height: 120px;
+  height: 160px;
 
   margin-left: -6px;
 
@@ -305,11 +317,13 @@ const Textarea = styled.textarea`
   margin-top: 12px;
 
   ${media.md`
-    width: calc(98% - 12px);
+    width: calc(95% - 12px);
+    height: 140px;
+    font-size: 18px;
   `}
 `;
 
-export const ImageQuestion = ({ label }: { index: number; label: string }) => {
+const ImageQuestion = ({ label }: { index: number; label: string }) => {
   const addImage = useReviewStore((state) => state.addImage);
   const images = useReviewStore((state) => state.images);
 
@@ -352,6 +366,10 @@ const ImageContainer = styled.div`
   justify-content: flex-start;
 
   margin-top: 12px;
+
+  ${media.md`
+    margin-left: 3%;
+  `}
 `;
 
 const ImageBlock = styled.div`
@@ -367,11 +385,16 @@ const ImageBlock = styled.div`
   border: 2px solid ${colors.main};
 
   margin-right: 10px;
+
+  ${media.md`
+    width: 146px;
+    height: 146px;
+  `}
 `;
 
 const AddImageBlock = styled.label`
   position: relative;
-  margin: 20px 20px 20px 20px;
+  margin: 55px 55px 55px 55px;
   width: 40px;
   height: 40px;
 
@@ -389,7 +412,7 @@ const AddImageBlock = styled.label`
   }
 `;
 
-export const Repurchase = () => {
+const Repurchase = () => {
   const setRepurchase = useReviewStore((state) => state.setRepurchase);
   const answer6 = useReviewStore((state) => state.answer6);
 
@@ -430,7 +453,14 @@ const RepurchaseContainer = styled.div`
   margin-top: 35px;
 
   font-size: 17px;
-  font-weight: bold;
+
+  ${media.md`
+    font-weight: bold;
+  `}
+
+  ${media.lg`
+    margin-left: 22px;
+  `}
 `;
 
 const RepurchaseChoiceContainer = styled(ChoiceContainer)`
@@ -457,7 +487,8 @@ const RepurchaseChoiceContainer = styled(ChoiceContainer)`
   }
 
   ${media.md`
-    margin-left: 5%;
+    margin-left: 2%;
+    margin-top: 40px;
   `}
 `;
 
