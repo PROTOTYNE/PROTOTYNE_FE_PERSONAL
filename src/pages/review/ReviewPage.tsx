@@ -3,7 +3,13 @@ import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
 import { Button, DisableButton } from "@/entities";
-import { PAGE_URL, useReviewStore, ReviewService, colors } from "@/shared";
+import {
+  PAGE_URL,
+  useReviewStore,
+  ReviewService,
+  colors,
+  media,
+} from "@/shared";
 
 const ReviewPage = () => {
   const { id } = useParams();
@@ -110,7 +116,7 @@ const GradientBox = styled.div`
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 80%,
+    rgba(0, 0, 0, 0) 95%,
     #ffffff 100%
   );
 `;
@@ -132,6 +138,10 @@ const ScrollBox = styled.div`
   padding-top: 20px;
   padding-left: 5px;
   padding-right: 5px;
+
+  ${media.md`
+    width: 80%;
+  `};
 
   /* ::-webkit-scrollbar {
     width: 6px;
@@ -159,6 +169,10 @@ const ScrollContainer = styled.div`
 export const Label = styled.div`
   margin-top: 30px;
   font-size: 16px;
+
+  ${media.md`
+    font-weight: bold
+  `}
 `;
 
 const ChoicesContainer = styled.div`
@@ -175,6 +189,11 @@ const ChoicesContainer = styled.div`
 const ChoiceContainer = styled.div`
   margin-left: 25px;
   margin-right: 25px;
+
+  ${media.md`
+    margin-left: 10%;
+    margin-right: 10%;
+  `}
 
   input {
     display: none; /* 기본 체크박스 숨김 */
@@ -250,7 +269,6 @@ export const MultiChoiceQuestion = ({
 );
 
 export const SubjectiveQuestion = ({
-  index,
   label,
   onChange,
 }: {
@@ -285,6 +303,10 @@ const Textarea = styled.textarea`
   padding-right: 6px;
 
   margin-top: 12px;
+
+  ${media.md`
+    width: calc(98% - 12px);
+  `}
 `;
 
 export const ImageQuestion = ({ label }: { index: number; label: string }) => {
@@ -433,6 +455,10 @@ const RepurchaseChoiceContainer = styled(ChoiceContainer)`
   label::before {
     margin-right: 10px;
   }
+
+  ${media.md`
+    margin-left: 5%;
+  `}
 `;
 
 export default ReviewPage;
