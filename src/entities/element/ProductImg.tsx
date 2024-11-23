@@ -5,7 +5,7 @@ interface ProductImgProps {
   alt: string;
 }
 
-const ProductImg = ({ src, alt }: ProductImgProps) => {
+export const ProductImg = ({ src, alt }: ProductImgProps) => {
   return (
     <StyledProductImg>
       <img src={src} alt={alt} />
@@ -20,4 +20,3 @@ const StyledProductImg = styled.div`
   margin: 20px;
 `;
 
-export default ProductImg;

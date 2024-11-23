@@ -4,7 +4,7 @@ interface DescriptionProps {
   description?: string;
 }
 
-const Description = ({ description }: DescriptionProps) => {
+export const Description = ({ description }: DescriptionProps) => {
   return <StyledDescription>{description}</StyledDescription>;
 };
 
@@ -13,5 +13,3 @@ const StyledDescription = styled.div`
   line-height: 22px;
   margin: 15px 0;
 `;
-
-export default Description;

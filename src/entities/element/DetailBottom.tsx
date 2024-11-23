@@ -47,6 +47,8 @@ export const DetailBottom = ({
     navigate("/addressinfo/:id");
   };
 
+  // 북마크 등록 API 연결
+
   return (
     <BottomContainer>
       {isBookmark ? (

@@ -4,7 +4,7 @@ interface IndexProps {
   indexText: string;
 }
 
-const Index = ({ indexText }: IndexProps) => {
+export const Index = ({ indexText }: IndexProps) => {
   return <StyledIndex>{indexText}</StyledIndex>;
 };
 
@@ -26,5 +26,3 @@ const StyledIndex = styled.div`
 
   color: #000000;
 `;
-
-export default Index;

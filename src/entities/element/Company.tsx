@@ -4,7 +4,7 @@ interface Props {
   companyText?: string;
 }
 
-const Company = ({ companyText }: Props) => (
+export const Company = ({ companyText }: Props) => (
   <StyledCompany>{companyText}</StyledCompany>
 );
 
@@ -17,4 +17,3 @@ const StyledCompany = styled.div`
   color: #8e8e8e;
 `;
 
-export default Company;

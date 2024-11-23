@@ -62,7 +62,7 @@ const NewAddressForm = ({
         formData.phone ? (
           <BlueButton onClick={onSubmit}>체험 신청하기</BlueButton>
         ) : (
-          <DisableButton>체험 신청하기</DisableButton>
+          <DisableBlueButton>체험 신청하기</DisableBlueButton>
         )}
       </div>
     </BottomContainer>
@@ -119,7 +119,7 @@ export const BlueButton = styled.button`
   color: #ffffff;
 `;
 
-const DisableButton = styled(BlueButton)`
+export const DisableBlueButton = styled(BlueButton)`
   background: none;
   background-color: #d9d9d9;
 `;

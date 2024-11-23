@@ -1,57 +1,65 @@
 import styled from "@emotion/styled";
 import { BlueButton } from "./NewAddressForm";
-import { AiOutlineExclamationCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BottomContainer } from "./DetailBottom";
-import { useNavigate } from "react-router";
+import { FailedModal, SuccessModal } from "./Modal";
+import { useState } from "react";
 
 interface SavedAddressInfoProps {
-  deliveryName: string;
-  baseAddress: string;
-  detailAddress: string;
-  deliveryPhone: string;
+  data: {
+    apply: boolean;
+    deliveryName: string;
+    baseAddress: string;
+    detailAddress: string;
+    deliveryPhone: string;
+  }[];
 }
 
-const SavedAddressInfo = ({
-  deliveryName,
-  baseAddress,
-  detailAddress,
-  deliveryPhone,
-}: SavedAddressInfoProps) => {
-  const navigate = useNavigate();
-  const ticket = 10;
+const SavedAddressInfo = ({ data }: SavedAddressInfoProps) => {
+  const [success, setSuccess] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const response = "";
+
   const handleSubmit = () => {
-    if (ticket) {
+    if (response) {
       console.log("체험 신청 완료");
+      setSuccess(true);
     } else {
       console.log("체험 신청 실패");
+      setFailed(true);
     }
   };
 
   return (
-    <div>
-      <div>배송 주소</div>
-      <BasicAddressContainer>
-        <div>
-          <BlueBoldText>{deliveryName}</BlueBoldText>
-          <BasicTextContainer>기본</BasicTextContainer>
-        </div>
-        <div>{baseAddress}</div>
-        <div>{detailAddress}</div>
-        <div>{deliveryPhone}</div>
-        <SmallButton>수정</SmallButton>
-        <SmallButton>삭제</SmallButton>
-      </BasicAddressContainer>
-      <StyledAiFillPlusCircle onClick={() => navigate("/address")} />
-      <div>
-        <AiOutlineExclamationCircle />
-        배송 주소는 최대 10개까지 등록할 수 있습니다.
-      </div>
-      <BottomContainer>
-        <div style={{ width: "80%" }}>
-          <BlueButton onClick={handleSubmit}>체험 신청하기</BlueButton>
-        </div>
-      </BottomContainer>
-    </div>
+    <>
+      <h2>배송 주소</h2>
+
+      <SavedAddressInfoContainer>
+        {data.map((address, index) => (
+          <BasicAddressContainer key={index} apply={address.apply}>
+            <div style={{ display: "flex", gap: "7px" }}>
+              <BlueBoldText>{address.deliveryName}</BlueBoldText>
+              {address.apply && <BasicTextContainer>기본</BasicTextContainer>}
+            </div>
+            <div>
+              <div>{address.baseAddress}</div>
+              <div>{address.detailAddress}</div>
+              <div>{address.deliveryPhone}</div>
+            </div>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <SmallButton apply={address.apply}>수정</SmallButton>
+              <SmallButton apply={address.apply}>삭제</SmallButton>
+            </div>
+          </BasicAddressContainer>
+        ))}
+        <BottomContainer>
+          <div style={{ width: "80%" }}>
+            <BlueButton onClick={handleSubmit}>체험 신청하기</BlueButton>
+          </div>
+        </BottomContainer>
+        {success && <SuccessModal onClose={() => setSuccess(false)} />}
+        {failed && <FailedModal onClose={() => setFailed(false)} />}
+      </SavedAddressInfoContainer>
+    </>
   );
 };
 
@@ -73,25 +81,35 @@ const BasicTextContainer = styled.div`
   color: #0500ff;
 `;
 
-const SmallButton = styled.button`
+const SmallButton = styled.button<{ apply: boolean }>`
   display: inline-block;
   height: 28px;
   border: none;
-  background: #ffffff;
   border-radius: 6px;
+  padding: 0 10px;
+  background: ${({ apply }) =>
+    apply ? "white" : "linear-gradient(0deg, #f6f5ff, #f6f5ff)"};
+  color: ${({ apply }) => (apply ? "#0500ff" : "#333333")};
 `;
 
-const BasicAddressContainer = styled.div`
+const BasicAddressContainer = styled.div<{ apply: boolean }>`
   width: 90%;
-  display: inline-block;
-  background: linear-gradient(0deg, #f6f5ff, #f6f5ff), #d9d9d9;
-  /* Main */
-  border: 1px solid #0500ff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: ${({ apply }) =>
+    apply ? "linear-gradient(0deg, #f6f5ff, #f6f5ff)" : "#ffffff"};
+  border: 1px solid ${({ apply }) => (apply ? "#0500ff" : "#d9d9d9")};
   border-radius: 9px;
+  margin: 10px 0;
+  padding: 15px;
+  gap: 15px;
+  box-sizing: border-box;
 `;
 
-const StyledAiFillPlusCircle = styled(AiFillPlusCircle)`
-  color: #d9d9d9;
-  background-color: #0500ff;
-  border-radius: 150%;
+const SavedAddressInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;

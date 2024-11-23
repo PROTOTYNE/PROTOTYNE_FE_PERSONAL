@@ -25,7 +25,7 @@ interface PeriodSectionProps {
   };
 }
 
-const PeriodSection = ({ dateInfo, investInfo }: PeriodSectionProps) => {
+export const PeriodSection = ({ dateInfo, investInfo }: PeriodSectionProps) => {
   const currentDate = new Date().toISOString().split("T")[0]; // 현재 날짜 (YYYY-MM-DD)
 
   const isNow = (start: string, end: string): boolean => {
@@ -104,5 +104,3 @@ const PeriodSection = ({ dateInfo, investInfo }: PeriodSectionProps) => {
     </div>
   );
 };
-
-export default PeriodSection;

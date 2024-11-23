@@ -5,7 +5,7 @@ interface Props {
   ticketCount?: number;
 }
 
-const TicketInfo = ({ ticketCount }: Props) => (
+export const TicketInfo = ({ ticketCount }: Props) => (
   <StyledTicketInfo>
     <img src={ticket} alt="Ticket" />
     <div> X {ticketCount}개</div>
@@ -21,5 +21,3 @@ const StyledTicketInfo = styled.div`
   color: #667197;
   display: flex;
 `;
-
-export default TicketInfo;

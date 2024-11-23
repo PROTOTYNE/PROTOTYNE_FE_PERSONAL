@@ -1,18 +1,34 @@
-import { useState } from "react";
-import PeriodSection from "@/entities/element/PeriodSection";
-import ProductImg from "@/entities/element/ProductImg";
-import Company from "@/entities/element/Company";
-import ProductTitle from "@/entities/element/ProductTitle";
-import TicketInfo from "@/entities/element/TicketInfo";
-import Description from "@/entities/element/Description";
-import ReleaseDate from "@/entities/element/ReleaseDate";
-import Index from "@/entities/element/Index";
-import product from "../../../public/image/product.png";
-import { DetailBottom } from "@/entities/element/DetailBottom";
+import {
+  PeriodSection,
+  ProductImg,
+  Company,
+  ProductTitle,
+  TicketInfo,
+  Description,
+  ReleaseDate,
+  Index,
+  DetailBottom,
+} from "@/entities";
+
+import styled from "@emotion/styled";
+import shoes from "/image/orange_sneaker.png";
+import product from "/image/product.png";
+
+type SpeedColorProps = {
+  speed: number;
+  eventSpeed: number;
+};
+
+type ShoesImgProps = {
+  src: string;
+  speed: number;
+  eventSpeed: number;
+};
 
 const mockResponse = {
   eventId: 0,
   productId: 0,
+  eventSpeed: 30,
   name: "AirPods Max",
   enterprise: "Apple",
   category: "뷰티",
@@ -25,17 +41,18 @@ const mockResponse = {
   isBookmarked: true,
   dateInfo: {
     eventStart: "2024-11-14",
-    eventEnd: "2024-11-18",
-    releaseStart: "2024-11-19",
-    releaseEnd: "2024-11-19",
-    feedbackStart: "2024-11-20",
-    feedbackEnd: "2024-11-20",
-    judgeStart: "2024-11-19T16:52:13.931Z",
-    judgeEnd: "2024-11-19T16:52:13.931Z",
-    endDate: "2024-11-19",
+    eventEnd: "2024-11-30",
+    releaseStart: "2024-12-19",
+    releaseEnd: "2024-12-19",
+    feedbackStart: "2024-12-20",
+    feedbackEnd: "2024-12-20",
+    judgeStart: "2024-12-19T16:52:13.931Z",
+    judgeEnd: "2024-12-19T16:52:13.931Z",
+    endDate: "2024-12-19",
   },
   investInfo: {
     apply: true,
+    speed: 5,
     status: "미당첨",
     shipping: "배송중",
     transportNum: "한진 1234567890",
@@ -68,7 +85,43 @@ const ProductPage = () => {
           <ProductTitle productText={productData.name} />
           <TicketInfo ticketCount={productData.reqTickets} />
         </div>
-        <div>해당 체험은 초속 nn이상의 회원만 신청 가능</div>
+        <div style={{ textAlign: "center" }}>
+          해당 체험은
+          <span style={{ color: "blue" }}>
+            초속 {productData.eventSpeed}m이상
+          </span>
+          의 회원만 신청 가능
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "10px",
+            marginTop: "20px",
+            marginBottom: "100px",
+          }}
+        >
+          <SpeedText>YOUR SPEED</SpeedText>
+          <SpeedBar>
+            <SpeedColor
+              speed={productData.investInfo.speed}
+              eventSpeed={productData.eventSpeed}
+            />
+            <SpeedContainer
+              speed={productData.investInfo.speed}
+              eventSpeed={productData.eventSpeed}
+            >
+              {productData.investInfo.speed}m/s
+            </SpeedContainer>
+
+            <ShoesImg
+              src={shoes}
+              speed={productData.investInfo.speed}
+              eventSpeed={productData.eventSpeed}
+            />
+          </SpeedBar>
+        </div>
         <Index indexText="체험 일정" />
         <PeriodSection
           dateInfo={productData.dateInfo}
@@ -90,3 +143,46 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+const SpeedText = styled.div`
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 13px;
+  color: #0500ff;
+`;
+
+const SpeedBar = styled.div`
+  width: 222px;
+  height: 6px;
+  position: relative;
+  /* Back */
+  background: linear-gradient(0deg, #f6f5ff, #f6f5ff), #d9d9d9;
+  border-radius: 20px;
+`;
+
+const SpeedColor = styled.div<SpeedColorProps>`
+  width: ${({ speed, eventSpeed }) => (speed / eventSpeed) * 100}%;
+  height: 6px;
+
+  /* Main */
+  background: #0500ff;
+  border-radius: 20px;
+`;
+
+const ShoesImg = styled.img<ShoesImgProps>`
+  position: absolute;
+  top: -15px;
+  left: ${({ speed, eventSpeed }) =>
+    `calc(${(speed / eventSpeed) * 100}% - 10px)`};
+`;
+
+const SpeedContainer = styled.div<SpeedColorProps>`
+  position: absolute;
+  top: -15px;
+  left: ${({ speed, eventSpeed }) =>
+    `calc(${(speed / eventSpeed) * 100}% + 15px)`};
+  /* 5m/s */
+  font-weight: 400;
+  font-size: 10px;
+  color: #0500ff;
+`;
