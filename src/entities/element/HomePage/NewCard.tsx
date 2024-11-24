@@ -6,7 +6,7 @@ interface NewCardProps {
   title: string;
   date: string;
   image: string;
-  type?: "new" | "hot" | "imminent";
+  type?: "new" | "hot" | "imminent" | "myregister";
 }
 
 export const NewCard = ({ title, date, image, type }: NewCardProps) => {
@@ -38,6 +38,12 @@ export const NewCard = ({ title, date, image, type }: NewCardProps) => {
             <TicketImg />
             <div>X 2개</div>
           </div>
+        </div>
+      )}
+      {type === "myregister" && (
+        <div className="dday">
+          <div id="title">발표일</div>
+          <div id="day">D-15</div>
         </div>
       )}
     </CardContainer>
@@ -76,6 +82,24 @@ const CardContainer = styled.div`
       div {
         padding-top: 2px;
       }
+    }
+  }
+  .dday {
+    width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    background-color: #f6f5ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    #title {
+      font-size: 12px;
+      color: #8e8e8e;
+    }
+    #day {
+      font-size: 14px;
+      font-weight: bold;
     }
   }
 `;

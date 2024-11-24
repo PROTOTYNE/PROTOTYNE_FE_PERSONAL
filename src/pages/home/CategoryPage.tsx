@@ -144,6 +144,8 @@ const Dropdown = styled.div`
   align-items: end;
   padding: 12px;
   gap: 12px;
+  z-index: 1;
+  background-color: white;
 `;
 
 const DropdownItem = styled.div`
