@@ -38,7 +38,7 @@ const SavedAddressInfo = ({ data }: SavedAddressInfoProps) => {
 
   return (
     <>
-      <h2>배송 주소</h2>
+      <h2 style={{ marginLeft: "25px" }}>배송 주소</h2>
       <SavedAddressInfoContainer>
         {data.map((address) => (
           <BasicAddressContainer

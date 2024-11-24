@@ -3,33 +3,33 @@ import SavedAddressInfo from "@/entities/element/SavedAddressInfo";
 import NewAddressForm from "@/entities/element/NewAddressForm";
 
 const mockResponse = [
-  // {
-  //   id: 0,
-  //   deliveryName: "조서영",
-  //   deliveryPhone: "010-1234-1234",
-  //   postCode: "12345",
-  //   baseAddress: "서울특별시 서대문구 이화여대길 52",
-  //   detailAddress: "123동 123호",
-  //   default: true,
-  // },
-  // {
-  //   id: 1,
-  //   deliveryName: "조희수",
-  //   deliveryPhone: "010-1234-2345",
-  //   postCode: "67890",
-  //   baseAddress: "경기도 고양시 인살서구 행복길 12",
-  //   detailAddress: "123동 123호",
-  //   default: false,
-  // },
-  // {
-  //   id: 2,
-  //   deliveryName: "양진주",
-  //   deliveryPhone: "010-7290-8804",
-  //   postCode: "4320",
-  //   baseAddress: "용산구 어쩌구 주소",
-  //   detailAddress: "203호",
-  //   default: false,
-  // },
+  {
+    id: 0,
+    deliveryName: "조서영",
+    deliveryPhone: "010-1234-1234",
+    postCode: "12345",
+    baseAddress: "서울특별시 서대문구 이화여대길 52",
+    detailAddress: "123동 123호",
+    default: true,
+  },
+  {
+    id: 1,
+    deliveryName: "조희수",
+    deliveryPhone: "010-1234-2345",
+    postCode: "67890",
+    baseAddress: "경기도 고양시 인살서구 행복길 12",
+    detailAddress: "123동 123호",
+    default: false,
+  },
+  {
+    id: 2,
+    deliveryName: "양진주",
+    deliveryPhone: "010-7290-8804",
+    postCode: "4320",
+    baseAddress: "용산구 어쩌구 주소",
+    detailAddress: "203호",
+    default: false,
+  },
 ];
 
 const AddressInfoPage = () => {
