@@ -22,22 +22,28 @@ const TicketPage = () => {
   return (
     <>
       <TicketHeaderContainer>
-        <div>조서영님 보유 티켓: {mockResponse.ticketNumber}개</div>
-        <div>매월 10개의 무료 티켓을 제공해드립니다</div>
+        <div style={{ fontSize: "17px" }}>
+          <strong>조서영</strong> 님 보유 티켓:
+          <b style={{ color: "blue" }}> {mockResponse.ticketNumber}</b>개
+        </div>
+        <div style={{ fontSize: "14px" }}>
+          <span style={{ color: "blue" }}> 매월 10개</span>의 무료 티켓을
+          제공해드립니다
+        </div>
       </TicketHeaderContainer>
       <TabContainer>
         <Tab
-          label="티켓 구매"
+          label="티켓구매"
           active={activeTab === "buyTicket"}
           onClick={() => setActiveTab("buyTicket")}
         />
         <Tab
-          label="전체 내역"
+          label="전체내역"
           active={activeTab === "entireHistory"}
           onClick={() => setActiveTab("entireHistory")}
         />
         <Tab
-          label="사용 내역"
+          label="사용내역"
           active={activeTab === "usedHistory"}
           onClick={() => setActiveTab("usedHistory")}
         />
@@ -57,19 +63,20 @@ export default TicketPage;
 const TabContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
 `;
 
 const ContentContainer = styled.div`
-  padding: 20px;
+  width: 95vw;
+  margin: 0 auto;
 `;
 
 const TicketHeaderContainer = styled.div`
   width: 326px;
-  height: 81px;
-
-  /* Back */
+  padding: 30px 20px;
+  box-sizing: border-box;
   background: #f6f5ff;
   border-radius: 6px;
+  margin: 30px calc(50vw - 326px / 2);
+  display: block;
 `;

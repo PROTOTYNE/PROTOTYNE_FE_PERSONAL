@@ -18,9 +18,9 @@ const Tab: React.FC<TabProps> = ({ label, active, onClick }) => {
 export default Tab;
 
 const StyledTab = styled.div<{ active: boolean }>`
-  padding: 10px 20px;
+  padding: 10px 0;
   cursor: pointer;
-  font-weight: ${({ active }) => (active ? "bold" : "normal")};
-  border-bottom: ${({ active }) => (active ? "2px solid blue" : "none")};
-  color: ${({ active }) => (active ? "blue" : "black")};
+  border-bottom: ${({ active }) => (active ? "1.5px solid blue" : "none")};
+  color: ${({ active }) => (active ? "blue" : "#8E8E8E")};
+  font-weight: 700;
 `;

@@ -39,7 +39,7 @@ const usedHistory = [
 ];
 
 export const BuyTicket = () => (
-  <div>
+  <BuyTicketContainer>
     {Object.entries(TicketCost).map(([key, value]) => (
       <TicketContainer key={key}>
         <div style={{ display: "flex", justifyContent: "center", gap: "5px" }}>
@@ -49,7 +49,7 @@ export const BuyTicket = () => (
         {value.toLocaleString()}원
       </TicketContainer>
     ))}
-  </div>
+  </BuyTicketContainer>
 );
 
 export const EntireHistory = () => (
@@ -71,5 +71,12 @@ const TicketContainer = styled.div`
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  margin: 20px;
 `;
+
+const BuyTicketContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0;
+`
