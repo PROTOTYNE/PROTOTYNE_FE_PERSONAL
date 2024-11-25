@@ -3,12 +3,12 @@ import { IoIosSearch, IoIosArrowDown } from "react-icons/io";
 
 const SearchBar = ({ month, order, onClick }) => {
   return (
-    <SearchBarContainer onClick={onClick}>
+    <SearchBarContainer>
       <SearchContainer />
       <SearchIcon>
         <IoIosSearch size={"25px"} />
       </SearchIcon>
-      <SearchText>
+      <SearchText onClick={onClick}>
         {month}·{order} <IoIosArrowDown />
       </SearchText>
     </SearchBarContainer>
@@ -24,6 +24,8 @@ const SearchContainer = styled.input`
   background: #f6f5ff;
   border-radius: 6px;
   border: none;
+  padding-left: 50px;
+  box-sizing: border-box;
 `;
 
 const SearchIcon = styled.div`
@@ -38,6 +40,6 @@ const SearchBarContainer = styled.div`
 
 const SearchText = styled.div`
   position: absolute;
-  left: 65%;
+  left: 70%;
   bottom: 20%;
 `;
