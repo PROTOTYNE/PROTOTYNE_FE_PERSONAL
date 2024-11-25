@@ -13,9 +13,9 @@ const Toggle: React.FC = () => {
   };
 
   return (
-    <ToggleContainer>
+    <ToggleContainer onClick={handleToggle}>
       <Rectangle active={active}>
-        <Ellipse active={active} onClick={handleToggle} />
+        <Ellipse active={active} />
         <TextContainer active={active}>{"잔여 티켓"} </TextContainer>
       </Rectangle>
     </ToggleContainer>
@@ -53,11 +53,10 @@ const ToggleContainer = styled.div`
 
 const TextContainer = styled.div<StyledProps>`
   position: absolute;
-
   width: 48px;
   color: ${(props) => (props.active ? "white" : "#d9d9d9")};
   font-weight: bold;
   font-size: 10px;
-  top: 3.5px;
-  left: ${(props) => (props.active ? "8%" : "35%")};
+  top: 4.5px;
+  left: ${(props) => (props.active ? "12%" : "35%")};
 `;

@@ -1,41 +1,43 @@
 import styled from "@emotion/styled";
-import { CiSearch } from "react-icons/ci";
+import { IoIosSearch, IoIosArrowDown } from "react-icons/io";
+
+const SearchBar = ({ month, order, onClick }) => {
+  return (
+    <SearchBarContainer onClick={onClick}>
+      <SearchContainer />
+      <SearchIcon>
+        <IoIosSearch size={"25px"} />
+      </SearchIcon>
+      <SearchText>
+        {month}·{order} <IoIosArrowDown />
+      </SearchText>
+    </SearchBarContainer>
+  );
+};
+
+export default SearchBar;
 
 const SearchContainer = styled.input`
-  /* search */
-  /* Auto layout */
-  display: flex;
-  align-items: center;
-  padding: 10px 40px;
-  gap: 10px;
-  box-sizing: border-box;
-  width: 80%;
-  height: 45px;
-
-  /* gray/gray_F4F4F4 */
-  background: #f4f4f4;
+  width: 100%;
+  height: 33px;
+  margin: 0 auto;
+  background: #f6f5ff;
   border-radius: 6px;
+  border: none;
 `;
 
 const SearchIcon = styled.div`
   position: absolute;
-  right: 97%;
-  bottom: 25%;
+  right: 90%;
+  bottom: 0%;
 `;
 
 const SearchBarContainer = styled.div`
   position: relative;
 `;
 
-const SearchBar = () => {
-  return (
-    <SearchBarContainer>
-      <SearchContainer />
-      <SearchIcon>
-        <CiSearch />
-      </SearchIcon>
-    </SearchBarContainer>
-  );
-};
-
-export default SearchBar;
+const SearchText = styled.div`
+  position: absolute;
+  left: 65%;
+  bottom: 20%;
+`;

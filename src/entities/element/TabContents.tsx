@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import ticket from "/image/ticket.svg";
-import Toggle from "./Toggle";
-import SearchBar from "./SearchBar";
+import HistoryList from "./HistoryList";
 
 const TicketCost = {
   5: 5000,
@@ -9,7 +8,6 @@ const TicketCost = {
   20: 16000,
 };
 
-//pentalty 여부 필요(css 적용)
 const entireHistory = [
   {
     createdAt: "2024-11-24T04:22:20.941Z",
@@ -55,44 +53,11 @@ export const BuyTicket = () => (
 );
 
 export const EntireHistory = () => (
-  <div>
-    <SearchBar />
-    <Toggle />
-    {entireHistory.map((history, index) => (
-      <HistoryItem key={index}>
-        <div>날짜: {new Date(history.createdAt).toLocaleDateString()}</div>
-        <div>이름: {history.name}</div>
-        <div>설명: {history.ticketDesc}</div>
-        <div>
-          변경된 티켓 수:
-          {history.ticketChange > 0
-            ? `+${history.ticketChange}`
-            : history.ticketChange}
-        </div>
-      </HistoryItem>
-    ))}
-  </div>
+  <HistoryList data={entireHistory}/>
 );
 
-//사용 내역: 전체 내역에서 제공 티켓, 패널티 제외한 내역?
 export const UsedHistory = () => (
-  <div>
-    <SearchBar />
-    <Toggle />
-    {usedHistory.map((history, index) => (
-      <HistoryItem key={index}>
-        <div>날짜: {new Date(history.createdAt).toLocaleDateString()}</div>
-        <div>이름: {history.name}</div>
-        <div>설명: {history.ticketDesc}</div>
-        <div>
-          변경된 티켓 수:
-          {history.ticketChange > 0
-            ? `+${history.ticketChange}`
-            : history.ticketChange}
-        </div>
-      </HistoryItem>
-    ))}
-  </div>
+  <HistoryList data={usedHistory} />
 );
 
 const TicketContainer = styled.div`
@@ -107,12 +72,4 @@ const TicketContainer = styled.div`
   padding: 20px;
   box-sizing: border-box;
   margin: 20px;
-`;
-
-const HistoryItem = styled.div`
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
 `;
