@@ -1,10 +1,24 @@
 import styled from "@emotion/styled";
 import { colors, My, Shoes } from "@/shared";
-import { NewCard, PageWrapper, TitleContainer, DivLine } from "@/entities";
+import {
+  NewCard,
+  PageWrapper,
+  TitleContainer,
+  DivLine,
+  HotCard,
+} from "@/entities";
 import { useState } from "react";
 
+type NewCardProps = "myregister" | "myprize" | "myreview" | "myend";
+
+type TabType = {
+  id: number;
+  title: string;
+  type: NewCardProps;
+};
+
 const MyInfoPage = () => {
-  const [tab, setTab] = useState("당첨");
+  const [tab, setTab] = useState<NewCardProps>("myregister");
   const [category, setCategory] = useState("all");
   const percent = 80;
 
@@ -42,8 +56,8 @@ const MyInfoPage = () => {
           {TabContent.map((content) => (
             <p
               key={content.id}
-              className={tab === content.title ? "selected" : ""}
-              onClick={() => setTab(content.title)}
+              className={tab === content.type ? "selected" : ""}
+              onClick={() => setTab(content.type)}
             >
               {content.title} {content.id}
             </p>
@@ -54,7 +68,13 @@ const MyInfoPage = () => {
           {NewCardList.map((card) => {
             return (
               <>
-                <NewCard key={card.id} {...card} type="myregister" />
+                <NewCard key={card.id} {...card} type={tab} />
+                {tab === "myreview" && (
+                  <DeliveryReview delivery>
+                    <div id="delivery">배송 완료</div>
+                    <div id="review">리뷰 쓰기</div>
+                  </DeliveryReview>
+                )}
                 <DivLine />
               </>
             );
@@ -76,16 +96,11 @@ const MyInfoPage = () => {
           ))}
         </CategoryTab>
         <Order>・ 최신순</Order>
-        {/* <NewCardWrapper>
-          {NewCardList.map((card) => {
-            return (
-              <>
-                <NewCard key={card.id} {...card} type="myregister" />
-                <DivLine />
-              </>
-            );
-          })}
-        </NewCardWrapper> */}
+        <CardWrapper>
+          {HotCardList.map((card) => (
+            <HotCard key={card.id} {...card} />
+          ))}
+        </CardWrapper>
       </PageWrapper>
     </div>
   );
@@ -226,10 +241,10 @@ const Tabs = styled.div`
 const CategoryTab = styled.div`
   display: flex;
   gap: 10px;
+  padding: 0 10px 0 0;
   overflow-x: scroll;
   margin-top: 10px;
   div {
-    width: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -238,6 +253,7 @@ const CategoryTab = styled.div`
     border-radius: 6px;
     border: 0.5px solid #000;
     font-size: 14px;
+    word-break: keep-all;
   }
   .selected {
     background-color: #0500ff;
@@ -251,7 +267,7 @@ const Order = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 10px;
+  margin-top: 12px;
 `;
 
 const NewCardWrapper = styled.div`
@@ -259,6 +275,41 @@ const NewCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
+`;
+
+const CardWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 26px;
+`;
+
+const DeliveryReview = styled.div<{ delivery: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  height: 35px;
+  div {
+    width: 129px;
+    height: 35px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  #delivery {
+    background-color: ${(props) =>
+      props.delivery ? colors.back : colors.main};
+    color: ${(props) => (props.delivery ? colors.black : colors.white)};
+  }
+  #review {
+    background-color: ${(props) =>
+      !props.delivery ? colors.back : colors.main};
+    color: ${(props) => (!props.delivery ? colors.black : colors.white)};
+  }
 `;
 
 const NewCardList = [
@@ -299,22 +350,26 @@ const NewCardList = [
     image: "https://via.placeholder.com/150",
   },
 ];
-const TabContent = [
+const TabContent: TabType[] = [
   {
     id: 1,
     title: "신청",
+    type: "myregister",
   },
   {
     id: 2,
     title: "당첨",
+    type: "myprize",
   },
   {
     id: 3,
     title: "후기",
+    type: "myreview",
   },
   {
     id: 4,
     title: "종료",
+    type: "myend",
   },
 ];
 
@@ -346,5 +401,87 @@ const Categories = [
   {
     name: "장난감",
     type: "toy",
+  },
+];
+const HotCardList = [
+  {
+    id: 1,
+    title: "시제품1",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 2,
+    title: "시제품2",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 3,
+    title: "시제품3",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 4,
+    title: "시제품4",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 5,
+    title: "시제품5",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 6,
+    title: "시제품6",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 7,
+    title: "시제품7",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 8,
+    title: "시제품8",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 9,
+    title: "시제품9",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: 10,
+    title: "시제품10",
+    company: "company1",
+    apply: 100,
+    ticket: 2,
+    image: "https://via.placeholder.com/150",
   },
 ];
