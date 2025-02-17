@@ -45,7 +45,7 @@ const SignUpPage = () => {
           <AdditionalInfoForm />
         )}
       </Container>
-      {md ? <Button></Button> : null}
+      {md ? <Button>가입하기</Button> : null}
     </>
   );
 };

@@ -1,9 +1,39 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { media, PAGE_URL, RightArr } from "@/shared";
 
 export const Header = ({ isMain }: { isMain: boolean }) => {
+  const { pathname } = useLocation();
+
+  const isSignIn = pathname !== PAGE_URL.SignIn;
+  const isSignUp = pathname !== PAGE_URL.SignUp;
+
+  const MdBackGround = styled.div`
+    width: 100%;
+    height: 70px;
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    padding-top: 10px;
+
+    z-index: 10;
+
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+
+    ${isSignIn
+      ? "background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
+      : "background: linear-gradient(90deg, #ffffff, #e4e6ff, #e4e6ff);"}
+
+    ${media.md`
+    display: flex;
+  `}
+  `;
+
   return (
     <>
       <BackGround>
@@ -50,6 +80,8 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
           <img style={{ width: "26px" }} src="./image/side.png"></img>
         </Container>
       </MdBackGround>
+
+      {isSignUp || isSignIn ? <Shield /> : null}
     </>
   );
 };
@@ -82,30 +114,6 @@ const BackGround = styled.div`
   `}
 `;
 
-const MdBackGround = styled.div`
-  background-color: white;
-  width: 100%;
-  height: 70px;
-
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
-  padding-top: 10px;
-
-  z-index: 10;
-
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-  ${media.md`
-    display: flex;
-  `}
-`;
-
 const Container = styled.div`
   margin: 0px 40px 0 40px;
 
@@ -121,4 +129,15 @@ const Title = styled.div`
   font-size: 16px;
   font-weight: bolder;
   color: black;
+`;
+
+const Shield = styled.div`
+  position: fixed;
+  z-index: 30;
+  width: 100%;
+  height: 70px;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
 `;
