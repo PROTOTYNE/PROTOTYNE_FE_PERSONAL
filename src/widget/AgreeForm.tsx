@@ -3,11 +3,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Button, DisableButton } from "@/entities";
-import { PAGE_URL, CheckBox, CheckedBox, colors, RightArr } from "@/shared";
+import {
+  PAGE_URL,
+  CheckBox,
+  CheckedBox,
+  colors,
+  RightArr,
+  media,
+  useLayoutStore,
+} from "@/shared";
+import PersonalInfoPage from "@/pages/auth/signup/PersonalInfoPage";
 
-export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
+export const AgreeForm = ({ nextHandler }: { nextHandler?: () => void }) => {
   const [agree1, setAgree1] = useState<boolean>(false);
   const [agree2, setAgree2] = useState<boolean>(false);
+  const md = useLayoutStore((state) => state.md);
+
   return (
     <>
       <Title>환영합니다!</Title>
@@ -34,6 +45,12 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
         </MainElement>
       )}
 
+      {!md || (
+        <ScrollArea>
+          <PersonalInfoPage />
+        </ScrollArea>
+      )}
+
       {agree1 ? (
         <Element>
           <CheckedBox
@@ -42,9 +59,11 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
             }}
           />
           <span>필수</span>서비스 이용약관
-          <Link to={PAGE_URL.TermsOfUse}>
-            <RightArr transform="scale(1.2)" stroke={colors.main} />
-          </Link>
+          {md || (
+            <Link to={PAGE_URL.TermsOfUse}>
+              <RightArr transform="scale(1.2)" stroke={colors.main} />
+            </Link>
+          )}
         </Element>
       ) : (
         <Element>
@@ -54,9 +73,11 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
             }}
           />
           <span>필수</span>서비스 이용약관
-          <Link to={PAGE_URL.TermsOfUse}>
-            <RightArr transform="scale(1.2)" stroke={colors.main} />
-          </Link>
+          {md || (
+            <Link to={PAGE_URL.TermsOfUse}>
+              <RightArr transform="scale(1.2)" stroke={colors.main} />
+            </Link>
+          )}
         </Element>
       )}
       {agree2 ? (
@@ -67,9 +88,11 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
             }}
           />
           <span>필수</span>개인정보 수집 동의서
-          <Link to={PAGE_URL.PersonalInfo}>
-            <RightArr transform="scale(1.2)" stroke={colors.main} />
-          </Link>
+          {md || (
+            <Link to={PAGE_URL.PersonalInfo}>
+              <RightArr transform="scale(1.2)" stroke={colors.main} />
+            </Link>
+          )}
         </Element>
       ) : (
         <Element>
@@ -79,22 +102,26 @@ export const AgreeForm = ({ nextHandler }: { nextHandler: () => void }) => {
             }}
           />
           <span>필수</span>개인정보 수집 동의서
-          <Link to={PAGE_URL.PersonalInfo}>
-            <RightArr transform="scale(1.2)" stroke={colors.main} />
-          </Link>
+          {md || (
+            <Link to={PAGE_URL.PersonalInfo}>
+              <RightArr transform="scale(1.2)" stroke={colors.main} />
+            </Link>
+          )}
         </Element>
       )}
-      {agree1 && agree2 ? (
-        <Button
-          onClick={() => {
-            if (agree1 && agree2) nextHandler();
-          }}
-        >
-          계속하기
-        </Button>
-      ) : (
-        <DisableButton>모든 항목을 동의해주세요!</DisableButton>
-      )}
+      {nextHandler ? (
+        agree1 && agree2 ? (
+          <Button
+            onClick={() => {
+              if (agree1 && agree2) nextHandler();
+            }}
+          >
+            계속하기
+          </Button>
+        ) : (
+          <DisableButton>모든 항목을 동의해주세요!</DisableButton>
+        )
+      ) : null}
     </>
   );
 };
@@ -107,6 +134,14 @@ const Title = styled.div`
   font-size: 23px;
 
   margin-top: 40px;
+
+  ${media.md`
+    font-size: 28px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    margin-top: 100px;
+  `};
 `;
 
 const SubTitle = styled.div`
@@ -159,4 +194,39 @@ const MainElement = styled(Element)`
   padding: 20px;
 
   margin-bottom: 10px;
+`;
+
+const ScrollArea = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ position: "relative", width: "100%" }}>
+    <ScrollBox>
+      <ScrollContainer>{children}</ScrollContainer>
+      <div style={{ height: "30px" }}></div>
+    </ScrollBox>
+  </div>
+);
+
+const ScrollBox = styled.div`
+  position: relative;
+  background-color: #ffffffbe;
+
+  width: calc(100% - 0px);
+  height: 100px;
+
+  margin-top: 10px;
+
+  border-radius: 4px;
+  border: 1px solid #a5a5a5;
+
+  overflow-y: scroll;
+
+  padding-top: 20px;
+  padding-right: 5px;
+`;
+
+const ScrollContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;

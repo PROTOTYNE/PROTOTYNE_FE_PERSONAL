@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
-import { colors, useUserStore } from "@/shared";
+import { colors, media, useUserStore } from "@/shared";
 import { Button, DisableButton } from "@/entities";
 
-export const BasicInfoForm = ({ nextHandler }: { nextHandler: () => void }) => {
+export const BasicInfoForm = ({
+  nextHandler,
+}: {
+  nextHandler?: () => void;
+}) => {
   const userStore = useUserStore();
 
   return (
@@ -89,14 +93,16 @@ export const BasicInfoForm = ({ nextHandler }: { nextHandler: () => void }) => {
           +
         </FamilyNumButton>
       </InputContainer>
-      {userStore.name &&
-      userStore.birthYear &&
-      userStore.birthMonth &&
-      userStore.birthDay ? (
-        <Button onClick={nextHandler}>계속하기</Button>
-      ) : (
-        <DisableButton>모든 항목을 입력해주세요!</DisableButton>
-      )}
+      {nextHandler ? (
+        userStore.name &&
+        userStore.birthYear &&
+        userStore.birthMonth &&
+        userStore.birthDay ? (
+          <Button onClick={nextHandler}>계속하기</Button>
+        ) : (
+          <DisableButton>모든 항목을 입력해주세요!</DisableButton>
+        )
+      ) : null}
     </>
   );
 };
@@ -121,6 +127,14 @@ const Title = styled.div`
   > span {
     color: ${colors.main};
   }
+
+  ${media.md`
+    font-size: 28px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    margin-top: 100px;
+  `};
 `;
 
 const SubTitle = styled.div`
