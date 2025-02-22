@@ -26,7 +26,7 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
     align-items: center;
 
     ${isSignIn
-      ? "background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
+      ? "background-color: white;"
       : "background: linear-gradient(90deg, #ffffff, #e4e6ff, #e4e6ff);"}
 
     ${media.md`
@@ -38,7 +38,7 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
     <>
       <BackGround>
         {isMain ? (
-          <img src="./image/side.png"></img>
+          <img src="/image/side.png"></img>
         ) : (
           <Link to={".."}>
             <RightArr
@@ -51,22 +51,22 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
 
         <Link to={"/home"}>
           <Container>
-            <img style={{ width: "155px" }} src="./logo/title.png"></img>
+            <img style={{ width: "155px" }} src="/logo/title.png" />
           </Container>
         </Link>
         <Link to={"/alarm"}>
-          <img style={{ width: "26px" }} src="./image/alarm.png"></img>
+          <img style={{ width: "26px" }} src="/image/alarm.png" />
         </Link>
       </BackGround>
 
       <MdBackGround>
         <Link to={"/home"}>
           <Container>
-            <img style={{ width: "53px" }} src="./logo/default.png"></img>
+            <img style={{ width: "53px" }} src="/logo/default.png" />
             <img
               style={{ width: "160px", marginTop: "8px" }}
-              src="./logo/title.png"
-            ></img>
+              src="/logo/title.png"
+            />
           </Container>
         </Link>
         <Link to={PAGE_URL.Ticket}>
@@ -76,8 +76,8 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
           <Title>My Page</Title>
         </Link>
         <Container>
-          <img style={{ width: "26px" }} src="./image/alarm.png"></img>
-          <img style={{ width: "26px" }} src="./image/side.png"></img>
+          <img style={{ width: "26px" }} src="/image/alarm.png" />
+          <img style={{ width: "26px" }} src="/image/side.png" />
         </Container>
       </MdBackGround>
 
@@ -115,7 +115,7 @@ const BackGround = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 0px 40px 0 40px;
+  margin: -9px 40px 0 40px;
 
   display: flex;
   align-items: center;

@@ -43,19 +43,19 @@ const SignInPage = () => {
                 onClick={() => {
                   signInHandler();
                 }}
-                src="./image/kakao_login_pc.png"
+                src="/image/kakao_login_pc.png"
                 alt="kakao_login"
                 style={{ width: "260px" }}
               ></img>
             </div>
             <div>
               <img
-                src="./logo/default.png"
+                src="/logo/default.png"
                 alt="logo"
                 style={{ width: "360px" }}
               ></img>
               <img
-                src="./logo/title.png"
+                src="/logo/title.png"
                 alt="logo_title"
                 style={{ width: "400px" }}
               ></img>
@@ -66,14 +66,14 @@ const SignInPage = () => {
         <Container>
           <div>
             <span> 앞서나가는 당신을 위한 특별한 기회</span>
-            <img src="./image/main_title.png" alt="main_title"></img>
+            <img src="/image/main_title.png" alt="main_title"></img>
           </div>
 
           <img
             onClick={() => {
               signInHandler();
             }}
-            src="./image/kakao_login.png"
+            src="/image/kakao_login.png"
             alt="kakao_login"
           ></img>
         </Container>
