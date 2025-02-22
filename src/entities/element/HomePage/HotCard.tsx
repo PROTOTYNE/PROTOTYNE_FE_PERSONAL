@@ -19,14 +19,14 @@ export const HotCard = ({
   apply,
   ticket,
   image,
-  participant,
+  participant = false,
 }: HotCardProps) => {
   return (
     <CardContainer>
       <ImageBox participant>
         <img src={image} alt="hot card" />
         <div>
-          <TicketImg /> X {ticket}개
+          <TicketImg /> x {ticket}개
         </div>
       </ImageBox>
       <DescContainer>
@@ -47,8 +47,8 @@ const CardContainer = styled.div`
 
 const ImageBox = styled.div<{ participant: boolean }>`
   position: relative;
-  width: ${(participant) => (participant ? "85%" : "137px")};
-  height: ${(participant) => (participant ? "85%" : "137px")};
+  width: ${(participant) => (participant ? "137px" : "100%")};
+  height: ${(participant) => (participant ? "137px" : "100%")};
   border-radius: 9px;
   border: 1px solid #0500ff;
   padding: 10px;
