@@ -17,6 +17,7 @@ export const ReviewService = () => {
     for (const key in result) {
       if (
         result[key as keyof typeof result] &&
+        key.includes("question") &&
         key !== "question5" &&
         key !== "id"
       ) {
