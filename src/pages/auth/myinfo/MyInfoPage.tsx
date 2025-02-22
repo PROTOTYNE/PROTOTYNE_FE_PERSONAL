@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors, My, Shoes } from "@/shared";
+import { colors, My, PAGE_URL, Shoes } from "@/shared";
 import {
   NewCard,
   PageWrapper,
@@ -8,6 +8,7 @@ import {
   HotCard,
 } from "@/entities";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type NewCardProps = "myregister" | "myprize" | "myreview" | "myend";
 
@@ -32,7 +33,7 @@ const MyInfoPage = () => {
           <div className="profile">
             <div className="name">
               <h2>조서영 님</h2>
-              <button>프로필 수정</button>
+              <Link to={PAGE_URL.EditMyInfo}>프로필 수정</Link>
             </div>
             <p>12개의 티켓으로 총 4개의 시제품을 체험했어요!</p>
           </div>
@@ -123,16 +124,20 @@ const Profile = styled.div`
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    button {
+
+    a {
       background-color: transparent;
       border-radius: 6px;
       border: 0.5px solid #8e8e8e;
       color: #8e8e8e;
-      text-align: center;
       cursor: pointer;
       width: 83px;
-      height: 25px;
+      height: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     p {
       font-size: 12px;
       color: #2e2e2e;
