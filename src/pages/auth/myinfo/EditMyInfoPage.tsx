@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
-import { additionalInfoOptions, useUserStore } from "@/shared";
+import { colors, media, additionalInfoOptions, useUserStore } from "@/shared";
 import { Background, Button, MultiSelectInput, SelectInput } from "@/entities";
 
 const EditMyInfoPage = () => {
@@ -179,49 +179,15 @@ const EditMyInfoPage = () => {
 
 export default EditMyInfoPage;
 
-export const Container = styled.main`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  width: 345px;
+const Container = styled.main`
+  position: relative;
+  left: 5%;
+  width: 90%;
 
   align-items: flex-start;
 `;
 
-export const Title = styled.div`
-  width: 100%;
-
-  position: relative;
-  font-weight: bold;
-  font-size: 23px;
-
-  margin-top: 20px;
-
-  > svg {
-    position: absolute;
-    right: 0px;
-    top: 10px;
-    font-size: 20px;
-    color: #c4c4c4;
-  }
-`;
-
-export const OnTitle = styled(Title)`
-  > svg {
-    color: #152662;
-  }
-`;
-
-export const SubTitle = styled.div`
-  font-size: 16px;
-
-  margin-top: 10px;
-  margin-bottom: 10px;
-`;
-
-export const Element = styled.div`
+const Element = styled.div`
   width: 100%;
 
   display: flex;
@@ -246,27 +212,7 @@ export const Element = styled.div`
   }
 `;
 
-export const OnElement = styled(Element)`
-  > svg {
-    color: #152662;
-  }
-`;
-
-export const LinkIcon = styled(ArrowForwardIosIcon)`
-  margin-top: 6px;
-  margin-left: 10px;
-
-  font-size: 18px;
-`;
-
-export const Ladel = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-
-  margin-top: 10px;
-`;
-
-export const ScrollArea = ({ children }: { children: React.ReactNode }) => (
+const ScrollArea = ({ children }: { children: React.ReactNode }) => (
   <div style={{ position: "relative" }}>
     <ScrollBox>
       <ScrollContainer>{children}</ScrollContainer>
@@ -315,21 +261,58 @@ const ScrollContainer = styled.div`
   flex-direction: column;
 `;
 
-export const BackButton = styled(ArrowBackIosNewIcon)`
-  position: absolute;
-  top: 16px;
-  left: 30px;
-  z-index: 100;
+const Title = styled.div`
+  width: 100%;
+
+  position: relative;
+  font-weight: bold;
+  font-size: 23px;
+
+  margin-top: 30px;
+
+  > svg {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    font-size: 20px;
+    color: #c4c4c4;
+  }
+
+  > span {
+    color: ${colors.main};
+  }
+
+  ${media.md`
+    font-size: 28px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    margin-top: 100px;
+  `};
 `;
 
-export const InputContainer = styled.div`
+const SubTitle = styled.div`
+  font-size: 16px;
+
+  margin-top: 10px;
+  margin-bottom: -20px;
+`;
+
+const Ladel = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+
+  margin-top: 5px;
+`;
+
+const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
 
   width: 100%;
 `;
 
-export const NameInput = styled.input`
+const NameInput = styled.input`
   margin-top: 10px;
   margin-bottom: 15px;
 
@@ -346,7 +329,7 @@ export const NameInput = styled.input`
   padding-left: 10px;
 `;
 
-export const BirthInput = styled(NameInput)`
+const BirthInput = styled(NameInput)`
   margin-left: 2%;
   margin-right: 2%;
 
@@ -361,7 +344,7 @@ export const BirthInput = styled(NameInput)`
   }
 `;
 
-export const GenderButton = styled.div`
+const GenderButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -378,25 +361,30 @@ export const GenderButton = styled.div`
   height: 30px;
   border-radius: 7px;
 
-  border: 1px solid #c4c4c4;
+  border: 2px solid #e3e2eb;
 `;
 
-export const FamilyNum = styled(GenderButton)`
+const FamilyNum = styled(GenderButton)`
   margin-left: 1%;
   margin-right: 1%;
   width: 30%;
+
+  color: ${colors.main};
 `;
 
-export const FamilyNumButton = styled(FamilyNum)`
+const FamilyNumButton = styled(FamilyNum)`
   font-weight: bold;
-  color: #152662;
+  color: #000000;
 
   width: 30px;
-  background-color: #c4c4c4;
+  background-color: #f6f5ff;
+
+  border: 2px solid #f6f5ff;
 `;
 
-export const SelectedGenderButton = styled(GenderButton)`
-  background-color: #24446b;
+const SelectedGenderButton = styled(GenderButton)`
+  background-color: ${colors.main};
+  border: 2px solid ${colors.main};
 
   color: white;
 `;
