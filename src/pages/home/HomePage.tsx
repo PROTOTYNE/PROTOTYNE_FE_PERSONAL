@@ -38,7 +38,7 @@ const HomePage = () => {
       </TitleContainer>
       <CardWrapper>
         {HotCardList.map((card) => (
-          <HotCard key={card.id} {...card} />
+          <HotCard key={card.id} {...card} participant />
         ))}
       </CardWrapper>
       <DivLine />
@@ -49,7 +49,10 @@ const HomePage = () => {
               key={category.name}
               onClick={() => navigate("/category/" + category.type)}
             >
-              <category.icon />
+              <category.icon
+                fill={category.fill ? colors.main : "none"}
+                stroke={category.stroke ? colors.main : "none"}
+              />
               {category.name}
             </Category>
             {idx + 1 === Categories.length || <CategoryDivline key={idx} />}
@@ -332,41 +335,54 @@ const NewCardList = [
     image: "https://via.placeholder.com/150",
   },
 ];
-
 const Categories = [
   {
     name: "전체",
     icon: All,
     type: "all",
+    stroke: false,
+    fill: true,
   },
   {
     name: "뷰티",
     icon: Beauty,
     type: "beauty",
+    stroke: true,
+    fill: false,
   },
   {
     name: "스포츠",
     icon: Sports,
     type: "sports",
+    stroke: true,
+    fill: true,
   },
   {
     name: "식품",
     icon: Food,
     type: "food",
+    stroke: true,
+    fill: true,
   },
   {
     name: "의류",
     icon: Clothes,
     type: "clothes",
+    stroke: true,
+    fill: false,
   },
   {
     name: "전자기기",
     icon: Electronic,
     type: "electronic",
+    stroke: false,
+    fill: true,
   },
   {
     name: "장난감",
     icon: Toy,
     type: "toy",
+    stroke: false,
+    fill: true,
   },
 ];
