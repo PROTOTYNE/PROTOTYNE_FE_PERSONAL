@@ -112,6 +112,7 @@ const Label = styled.span`
   font-size: 15px;
 
   margin-bottom: 2px;
+  margin-left: 40px;
 
   font-weight: bold;
 `;

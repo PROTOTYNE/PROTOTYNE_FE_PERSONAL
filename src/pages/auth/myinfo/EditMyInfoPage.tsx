@@ -1,8 +1,6 @@
 // import { useNavigate } from "react-router";
 
 import styled from "@emotion/styled";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 import { colors, media, additionalInfoOptions, useUserStore } from "@/shared";
 import { Background, Button, MultiSelectInput, SelectInput } from "@/entities";
@@ -19,6 +17,7 @@ const EditMyInfoPage = () => {
     <>
       <Background src="/background/signup.jpg" />
       <Container>
+        <Title>기본정보</Title>
         <Ladel>생년월일</Ladel>
         <InputContainer>
           <BirthInput
@@ -86,83 +85,73 @@ const EditMyInfoPage = () => {
             +
           </FamilyNumButton>
         </InputContainer>
-        <SubTitle>정보가 정확하지 않을 시 불이익이 있을 수 있습니다.</SubTitle>
-        <SubTitle>개인 정보 수정은 6개월에 한 번만 가능합니다.</SubTitle>
-        <Title>
-          추가정보를 입력하면 <br />더 많은 시제품을 체험할 수 있어요!
-        </Title>
-        <SubTitle>모두 입력하지 않아도 서비스 이용이 가능합니다.</SubTitle>
-        <SubTitle>추가 정보 수정은 3개월에 한 번만 가능합니다.</SubTitle>
-        <ScrollArea>
-          {additionalInfoOptions.map((additionalInfoOption, index) => {
-            if (index < 4)
-              return (
-                <SelectInput
-                  key={additionalInfoOption.name}
-                  label={additionalInfoOption.label}
-                  option={
-                    additionalInfoOption.options as {
-                      label: string;
-                      value: string | number;
-                    }[]
+        <Title>추가정보</Title>
+        {additionalInfoOptions.map((additionalInfoOption, index) => {
+          if (index < 4)
+            return (
+              <SelectInput
+                key={additionalInfoOption.name}
+                label={additionalInfoOption.label}
+                option={
+                  additionalInfoOption.options as {
+                    label: string;
+                    value: string | number;
+                  }[]
+                }
+                onChange={(newValue) => {
+                  if (newValue) {
+                    if (additionalInfoOption.name === "occupation")
+                      userStore.setOccupation(newValue.value);
+                    else if (additionalInfoOption.name === "income")
+                      userStore.setIncome(newValue.value);
+                    else if (additionalInfoOption.name === "familyComposition")
+                      userStore.setFamilyComposition(newValue.value);
+                    else if (additionalInfoOption.name === "healthStatus")
+                      userStore.setHealthStatus(newValue.value);
                   }
-                  onChange={(newValue) => {
-                    if (newValue) {
-                      if (additionalInfoOption.name === "occupation")
-                        userStore.setOccupation(newValue.value);
-                      else if (additionalInfoOption.name === "income")
-                        userStore.setIncome(newValue.value);
-                      else if (
-                        additionalInfoOption.name === "familyComposition"
-                      )
-                        userStore.setFamilyComposition(newValue.value);
-                      else if (additionalInfoOption.name === "healthStatus")
-                        userStore.setHealthStatus(newValue.value);
-                    }
-                  }}
-                />
-              );
-            else
-              return (
-                <MultiSelectInput
-                  key={additionalInfoOption.name}
-                  label={additionalInfoOption.label}
-                  options={
-                    additionalInfoOption.options as {
-                      label: string;
-                      value: string | number;
-                    }[]
-                  }
-                  onClick={
-                    additionalInfoOption.name === "interests"
-                      ? (value) => {
-                          if (!userStore.interests.includes(value))
-                            userStore.addInterest(value);
-                          else userStore.deleteInterest(value);
-                        }
-                      : additionalInfoOption.name === "productTypes"
-                      ? (value) => {
-                          if (
-                            !userStore.productTypes.includes(
-                              value as User.ProductType
-                            )
+                }}
+              />
+            );
+          else
+            return (
+              <MultiSelectInput
+                key={additionalInfoOption.name}
+                label={additionalInfoOption.label}
+                options={
+                  additionalInfoOption.options as {
+                    label: string;
+                    value: string | number;
+                  }[]
+                }
+                onClick={
+                  additionalInfoOption.name === "interests"
+                    ? (value) => {
+                        if (!userStore.interests.includes(value))
+                          userStore.addInterest(value);
+                        else userStore.deleteInterest(value);
+                      }
+                    : additionalInfoOption.name === "productTypes"
+                    ? (value) => {
+                        if (
+                          !userStore.productTypes.includes(
+                            value as User.ProductType
                           )
-                            userStore.addProductType(value as User.ProductType);
-                          else
-                            userStore.deleteProductType(
-                              value as User.ProductType
-                            );
-                        }
-                      : (value) => {
-                          if (!userStore.phones.includes(value as User.Phone))
-                            userStore.addPhone(value as User.Phone);
-                          else userStore.deletePhone(value as User.Phone);
-                        }
-                  }
-                />
-              );
-          })}
-        </ScrollArea>
+                        )
+                          userStore.addProductType(value as User.ProductType);
+                        else
+                          userStore.deleteProductType(
+                            value as User.ProductType
+                          );
+                      }
+                    : (value) => {
+                        if (!userStore.phones.includes(value as User.Phone))
+                          userStore.addPhone(value as User.Phone);
+                        else userStore.deletePhone(value as User.Phone);
+                      }
+                }
+              />
+            );
+        })}
       </Container>
       <Button
         onClick={() => {
@@ -183,82 +172,12 @@ const Container = styled.main`
   position: relative;
   left: 5%;
   width: 90%;
-
-  align-items: flex-start;
-`;
-
-const Element = styled.div`
-  width: 100%;
+  margin-bottom: 50px;
 
   display: flex;
-  align-items: center;
-
-  margin-top: 12px;
-
-  color: black;
-  text-decoration: none;
-  font-size: 18px;
-
-  > span {
-    color: #152662;
-    margin-right: 10px;
-  }
-
-  > svg {
-    position: absolute;
-    right: 0px;
-    font-size: 20px;
-    color: #c4c4c4;
-  }
-`;
-
-const ScrollArea = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ position: "relative" }}>
-    <ScrollBox>
-      <ScrollContainer>{children}</ScrollContainer>
-      <div style={{ height: "30px" }}></div>
-    </ScrollBox>
-  </div>
-);
-
-const ScrollBox = styled.div`
-  position: relative;
-  background-color: #ffffffbe;
-
-  width: calc(100% - 16px);
-  height: 50vh;
-
-  margin-top: 10px;
-
-  border-radius: 4px;
-
-  overflow-y: scroll;
-
-  padding-top: 20px;
-  padding-left: 5px;
-  padding-right: 5px;
-
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #152662b7;
-
-    border-radius: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #dcdcdc;
-
-    border-radius: 5px;
-  }
-`;
-
-const ScrollContainer = styled.div`
-  width: 100%;
-
-  display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
 `;
 
 const Title = styled.div`
@@ -291,18 +210,13 @@ const Title = styled.div`
   `};
 `;
 
-const SubTitle = styled.div`
-  font-size: 16px;
-
-  margin-top: 10px;
-  margin-bottom: -20px;
-`;
-
 const Ladel = styled.div`
   font-weight: bold;
   font-size: 16px;
 
   margin-top: 5px;
+
+  margin-left: 40px;
 `;
 
 const InputContainer = styled.div`
