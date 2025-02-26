@@ -34,8 +34,7 @@ const ProductPage = () => {
           `http://prototyne.site/users/product/detail/${eventId}`,
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTY2MTA0LCJleHAiOjE3NDA1Njk3MDR9.OZZb57La85-hCm037JX53B8VDKmi9ZBP4ixG76UZrTE",
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTY5NzQxLCJleHAiOjE3NDA1NzMzNDF9.DE-r6GPJSs8-OP-4G3PUuCQY6dVSEhJhisMQqtGu1xU`,
             },
           }
         );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Tab from "@/entities/element/Tab";
 import {
@@ -7,24 +7,37 @@ import {
   UsedHistory,
 } from "@/entities/element/TabContents";
 
-const mockResponse = {
-  ticketNumber: 4,
-  usedTicket: 0,
-  appliedNum: 0,
-  selectedNum: 0,
-  ongoingNum: 0,
-  completedNum: 0,
-};
-
 const TicketPage = () => {
   const [activeTab, setActiveTab] = useState("buyTicket"); // 단일 상태로 관리
+  const [ticketData, setTicketData] = useState(null);
 
+  useEffect(() => {
+    const fetchTicketData = async () => {
+      try {
+        const response = await fetch("http://prototyne.site/users/ticket", {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTY5NzQxLCJleHAiOjE3NDA1NzMzNDF9.DE-r6GPJSs8-OP-4G3PUuCQY6dVSEhJhisMQqtGu1xU`,
+          },
+        });
+        const data = await response.json();
+        setTicketData(data.result);
+      } catch (error) {
+        console.error("Error fetching ticket data:", error);
+      }
+    };
+
+    fetchTicketData();
+  }, []);
+
+  if (!ticketData) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <TicketHeaderContainer>
         <div style={{ fontSize: "17px" }}>
           <strong>조서영</strong> 님 보유 티켓:
-          <b style={{ color: "blue" }}> {mockResponse.ticketNumber}</b>개
+          <b style={{ color: "blue" }}> {ticketData.ticketNumber}</b>개
         </div>
         <div style={{ fontSize: "14px" }}>
           <span style={{ color: "blue" }}> 매월 10개</span>의 무료 티켓을
