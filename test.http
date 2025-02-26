@@ -1,0 +1,6 @@
+GET http://prototyne.site/users/product/detail/1
+
+###
+
+GET http://prototyne.site/users/like/list
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTY2MTA0LCJleHAiOjE3NDA1Njk3MDR9.OZZb57La85-hCm037JX53B8VDKmi9ZBP4ixG76UZrTE
