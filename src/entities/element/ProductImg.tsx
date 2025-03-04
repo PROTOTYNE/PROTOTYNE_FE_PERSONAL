@@ -19,4 +19,3 @@ const StyledProductImg = styled.div`
   align-items: center;
   margin: 20px;
 `;
-

@@ -1,42 +1,13 @@
 import styled from "@emotion/styled";
 import ticket from "/image/ticket.svg";
 import HistoryList from "./HistoryList";
+import { useEffect, useState } from "react";
 
 const TicketCost = {
   5: 5000,
   10: 9000,
   20: 16000,
 };
-
-const entireHistory = [
-  {
-    createdAt: "2024-11-24T04:22:20.941Z",
-    name: "프로토타인",
-    ticketDesc: "7월 무료 제공 티켓",
-    ticketChange: 10,
-  },
-  {
-    createdAt: "2024-11-24T04:22:20.941Z",
-    name: "루미큐브 클래식",
-    ticketDesc: "시제품 체험",
-    ticketChange: -2,
-  },
-];
-
-const usedHistory = [
-  {
-    createdAt: "2024-11-24T05:54:37.626Z",
-    name: "Adidas Samba 스니커즈",
-    ticketDesc: "Adidas",
-    ticketChange: -5,
-  },
-  {
-    createdAt: "2024-11-24T05:54:37.626Z",
-    name: "Mac Pro 13형",
-    ticketDesc: "Apple",
-    ticketChange: -20,
-  },
-];
 
 export const BuyTicket = () => (
   <BuyTicketContainer>
@@ -52,13 +23,61 @@ export const BuyTicket = () => (
   </BuyTicketContainer>
 );
 
-export const EntireHistory = () => (
-  <HistoryList data={entireHistory}/>
-);
+export const EntireHistory = () => {
+  const [entireHistory, setEntireHistory] = useState([]);
+  const endDate = new Date().toISOString().split("T")[0]; // 현재 날짜 (YYYY-MM-DD)
 
-export const UsedHistory = () => (
-  <HistoryList data={usedHistory} />
-);
+  useEffect(() => {
+    const fetchEentireHistory = async () => {
+      try {
+        const response = await fetch(
+          `http://prototyne.site/users/ticket/all?startDate=2024-01-01&endDate=${endDate}`,
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTcyNjI2LCJleHAiOjE3NDA1NzYyMjZ9.Qvz9mvnxD3Tzid6Ip_8VU4X-LBylx_fQPd2gemD0uDo`,
+            },
+          }
+        );
+        const data = await response.json();
+        setEntireHistory(data.result);
+      } catch (error) {
+        console.error("Error fetching used history:", error);
+      }
+    };
+
+    fetchEentireHistory();
+  }, []);
+
+  return <HistoryList data={entireHistory} />;
+};
+
+export const UsedHistory = () => {
+  const [usedHistory, setUsedHistory] = useState([]);
+  const endDate = new Date().toISOString().split("T")[0]; // 현재 날짜 (YYYY-MM-DD)
+
+  useEffect(() => {
+    const fetchUsedHistory = async () => {
+      try {
+        const response = await fetch(
+          `http://prototyne.site/users/ticket/used?startDate=2024-01-01&endDate=${endDate}`,
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTcyNjI2LCJleHAiOjE3NDA1NzYyMjZ9.Qvz9mvnxD3Tzid6Ip_8VU4X-LBylx_fQPd2gemD0uDo`,
+            },
+          }
+        );
+        const data = await response.json();
+        setUsedHistory(data.result);
+      } catch (error) {
+        console.error("Error fetching used history:", error);
+      }
+    };
+
+    fetchUsedHistory();
+  }, []);
+
+  return <HistoryList data={usedHistory} />;
+};
 
 const TicketContainer = styled.div`
   width: 326px;
@@ -79,4 +98,4 @@ const BuyTicketContainer = styled.div`
   align-items: center;
   gap: 15px;
   margin: 30px 0;
-`
+`;

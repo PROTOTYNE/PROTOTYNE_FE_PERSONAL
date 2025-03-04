@@ -23,12 +23,14 @@ interface DetailBottomProps {
     transportNum: string;
     penalty: boolean;
   };
+  eventId: string; // eventId 추가
 }
 
 export const DetailBottom = ({
   dateInfo,
   investInfo,
   isBookmarked,
+  eventId, // eventId 추가
 }: DetailBottomProps) => {
   const [isBookmark, setIsBookmark] = useState(isBookmarked);
   const navigate = useNavigate();
@@ -39,8 +41,32 @@ export const DetailBottom = ({
     return currentDate >= start && currentDate <= end;
   };
 
-  const handleBookmark = () => {
-    setIsBookmark(!isBookmark);
+  const handleBookmark = async () => {
+    try {
+      const url = isBookmark
+        ? `http://prototyne.site/users/unlike/${eventId}`
+        : `http://prototyne.site/users/like/${eventId}`;
+      const method = isBookmark ? "DELETE" : "POST";
+
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTY5NzQxLCJleHAiOjE3NDA1NzMzNDF9.DE-r6GPJSs8-OP-4G3PUuCQY6dVSEhJhisMQqtGu1xU`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setIsBookmark(!isBookmark);
+        isBookmark
+          ? console.log("북마크 해제 완료!", isBookmark)
+          : console.log("북마크 등록 완료", isBookmark);
+      } else {
+        console.error("Failed to update bookmark status");
+      }
+    } catch (error) {
+      console.error("Error updating bookmark status:", error);
+    }
   };
 
   const handleApply = () => {
