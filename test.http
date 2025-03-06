@@ -1,0 +1,9 @@
+GET http://prototyne.site/users/product/detail/1
+
+###
+
+GET http://prototyne.site/users/like/list
+
+###
+GET http://prototyne.site/users/ticket/used
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNzQwNTcxNDExLCJleHAiOjE3NDA1NzUwMTF9.JoTDNa4r47CiQq5JR9TS2-nglurBunnaIku8D2TZG3k
