@@ -26,7 +26,7 @@ const Container = styled.div`
   }
 `;
 
-const  = () => {
+const TermsOfUsePage = () => {
   const md = useLayoutStore((state) => state.md);
   return (
     <Container>
