@@ -6,8 +6,8 @@ import { media, PAGE_URL, RightArr } from "@/shared";
 export const Header = ({ isMain }: { isMain: boolean }) => {
   const { pathname } = useLocation();
 
-  const isSignIn = pathname !== PAGE_URL.SignIn;
-  const isSignUp = pathname !== PAGE_URL.SignUp;
+  const isSignIn = pathname === PAGE_URL.SignIn;
+  const isSignUp = pathname === PAGE_URL.SignUp;
 
   const MdBackGround = styled.div`
     width: 100%;
@@ -25,7 +25,7 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
     justify-content: space-between;
     align-items: center;
 
-    ${isSignIn
+    ${!isSignIn
       ? "background-color: white;"
       : "background: linear-gradient(90deg, #ffffff, #e4e6ff, #e4e6ff);"}
 
@@ -54,7 +54,7 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
             <img style={{ width: "155px" }} src="/logo/title.png" />
           </Container>
         </Link>
-        <Link to={"/alarm"}>
+        <Link to={"/alarm"} onClick={() => console.log("??")}>
           <img style={{ width: "26px" }} src="/image/alarm.png" />
         </Link>
       </BackGround>
@@ -81,7 +81,7 @@ export const Header = ({ isMain }: { isMain: boolean }) => {
         </Container>
       </MdBackGround>
 
-      {isSignUp || isSignIn ? <Shield /> : null}
+      {isSignIn || isSignUp ? <Shield /> : null}
     </>
   );
 };

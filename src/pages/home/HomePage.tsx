@@ -335,6 +335,7 @@ const NewCardList = [
     image: "https://via.placeholder.com/150",
   },
 ];
+
 const Categories = [
   {
     name: "전체",
