@@ -13,6 +13,7 @@ import {
   useLayoutStore,
 } from "@/shared";
 import PersonalInfoPage from "@/pages/auth/signup/PersonalInfoPage";
+import TermsOfUsePage from "@/pages/auth/signup/TermsOfUsePage";
 
 export const AgreeForm = ({ nextHandler }: { nextHandler?: () => void }) => {
   const [agree1, setAgree1] = useState<boolean>(false);
@@ -47,7 +48,7 @@ export const AgreeForm = ({ nextHandler }: { nextHandler?: () => void }) => {
 
       {!md || (
         <ScrollArea>
-          <PersonalInfoPage />
+          <TermsOfUsePage />
         </ScrollArea>
       )}
 
@@ -80,6 +81,13 @@ export const AgreeForm = ({ nextHandler }: { nextHandler?: () => void }) => {
           )}
         </Element>
       )}
+
+      {!md || (
+        <ScrollArea>
+          <PersonalInfoPage />
+        </ScrollArea>
+      )}
+
       {agree2 ? (
         <Element>
           <CheckedBox
@@ -210,7 +218,7 @@ const ScrollBox = styled.div`
   background-color: #ffffffbe;
 
   width: calc(100% - 0px);
-  height: 100px;
+  height: 200px;
 
   margin-top: 10px;
 
