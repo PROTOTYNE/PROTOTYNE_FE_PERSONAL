@@ -2,38 +2,24 @@ import styled from "@emotion/styled";
 import { TicketImg } from "@/shared";
 import { colors } from "@/shared";
 
-interface HotCardProps {
-  id: number;
-  title: string;
-  company: string;
-  apply: number;
-  ticket: number;
-  image: string;
+interface HotCardProps extends Product.CategoryListResDto {
   participant?: boolean;
 }
 
-export const HotCard = ({
-  // id,
-  title,
-  company,
-  apply,
-  ticket,
-  image,
-  participant = false,
-}: HotCardProps) => {
+export const HotCard = (props: HotCardProps) => {
   return (
     <CardContainer>
       <ImageBox participant>
-        <img src={image} alt="hot card" />
+        <img src={props.thumbnailUrl} alt="hot card" />
         <div>
-          <TicketImg /> x {ticket}개
+          <TicketImg /> x {props.reqTickets}개
         </div>
       </ImageBox>
       <DescContainer>
-        <p id="title">{title}</p>
+        <p id="title">{props.proName}</p>
         <div>
-          <p id="company">{company}</p>
-          {participant && <p id="apply">{apply}명 신청</p>}
+          <p id="company">{props.participant}</p>
+          {props.participant && <p id="apply">{props.participant}명 신청</p>}
         </div>
       </DescContainer>
     </CardContainer>

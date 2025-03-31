@@ -37,9 +37,23 @@ export const getAccess = (): string | null => {
   return localStorage.getItem(storageAccessKey);
 };
 
+API.interceptors.request.use(
+  (config) => {
+    const token = getAccess();
+    if (token) {
+      config.headers["Authorization"] = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 API.interceptors.response.use(
   (response) => response,
   async (error) => {
+    console.log("error", error);
     const {
       response: {
         data: { code },

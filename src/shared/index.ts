@@ -19,6 +19,7 @@ export { useLayoutStore } from "./hooks/stores/useLayoutStore";
 
 export { AuthService } from "./hooks/services/AuthService";
 export { ReviewService } from "./hooks/services/ReviewService";
+export { ProductService } from "./hooks/services/ProductService";
 
 export { default as HomeOn } from "./svg/homeOn.svg?react";
 export { default as HomeOff } from "./svg/homeOff.svg?react";

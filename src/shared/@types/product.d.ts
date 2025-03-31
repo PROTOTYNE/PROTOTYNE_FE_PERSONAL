@@ -96,18 +96,27 @@ declare namespace Product {
       }
     ];
   }
-
+  export interface CategoryListReqDto {
+    type: "popular" | "imminent" | "new";
+    cursor?: string;
+    pageSize?: number;
+  }
   export interface CategoryListDto {
-    result: [
-      {
-        id: 0;
-        name: string;
-        thumbnailUrl: string;
-        reqTickets: 0;
-        dday: 0;
-        bookmark: true;
-      }
-    ];
+    result: CategoryListResDto[];
+  }
+
+  export interface CategoryListResDto {
+    eventId: number;
+    proName: string;
+    thumbnailUrl: string;
+    entName: string;
+    bookmark: boolean;
+    reqTickets: number;
+    speed: number;
+    investCount: number;
+    eventEnd: Date;
+    releaseEnd: Date;
+    createdAt: Date;
   }
 
   export interface BookmarkListDto {

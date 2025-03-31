@@ -11,6 +11,7 @@ import {
   colors,
   All,
   Beauty,
+  ProductService,
 } from "@/shared";
 import styled from "@emotion/styled";
 import {
@@ -22,9 +23,27 @@ import {
   TitleContainer,
 } from "@/entities";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  const [hotCardList, setHotCardList] = useState<Product.CategoryListResDto[]>(
+    []
+  );
+
+  useEffect(() => {
+    ProductService()
+      .getProductList({
+        type: "popular",
+        pageSize: 10,
+      })
+      .then((res) => {
+        setHotCardList(res);
+        console.log(res);
+      });
+  }, []);
+
   return (
     <PageWrapper>
       <TitleContainer>
@@ -37,9 +56,10 @@ const HomePage = () => {
         </p>
       </TitleContainer>
       <CardWrapper>
-        {HotCardList.map((card) => (
-          <HotCard key={card.id} {...card} participant />
-        ))}
+        {hotCardList.length > 0 &&
+          hotCardList.map((card) => (
+            <HotCard key={card.eventId} {...card} participant />
+          ))}
       </CardWrapper>
       <DivLine />
       <CategoryContainer>
@@ -133,88 +153,88 @@ const NewCardWrapper = styled.div`
   gap: 10px;
 `;
 
-const HotCardList = [
-  {
-    id: 1,
-    title: "시제품1",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 2,
-    title: "시제품2",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 3,
-    title: "시제품3",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 4,
-    title: "시제품4",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 5,
-    title: "시제품5",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 6,
-    title: "시제품6",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 7,
-    title: "시제품7",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 8,
-    title: "시제품8",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 9,
-    title: "시제품9",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 10,
-    title: "시제품10",
-    company: "company1",
-    apply: 100,
-    ticket: 2,
-    image: "https://via.placeholder.com/150",
-  },
-];
+// const HotCardList = [
+//   {
+//     id: 1,
+//     title: "시제품1",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 2,
+//     title: "시제품2",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 3,
+//     title: "시제품3",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 4,
+//     title: "시제품4",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 5,
+//     title: "시제품5",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 6,
+//     title: "시제품6",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 7,
+//     title: "시제품7",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 8,
+//     title: "시제품8",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 9,
+//     title: "시제품9",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+//   {
+//     id: 10,
+//     title: "시제품10",
+//     company: "company1",
+//     apply: 100,
+//     ticket: 2,
+//     image: "https://via.placeholder.com/150",
+//   },
+// ];
 const DdayHotCardList = [
   {
     id: 1,
